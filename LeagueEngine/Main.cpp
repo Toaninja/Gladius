@@ -10,7 +10,7 @@ using namespace std;
 
 typedef struct Background
 {
-	string city;
+	string city; 
 	string trait;
 }background;
 
@@ -72,7 +72,7 @@ public:
 		this->tier = tier;
 		this->modifer = modifier;
 		for(int i=0; i < 10; i++)
-		this->array[i] = array[i];
+			this->array[i] = array[i];
 	}
 
 	void setLeagueTier(int x)
@@ -83,6 +83,19 @@ public:
 	void standingsUpdate();
 };
 
+Gladiator generatePlayer(int input)
+{
+	//1=HP focused
+	//2=attack focused
+	//3=strength focused
+	//4=defence focused
+
+
+	if (input == 1)
+	{
+
+	}
+}
 
 
 int main(int argc, char* argv[])
