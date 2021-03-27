@@ -20,10 +20,10 @@ class Gladiator
 	string name;
 	Background background;
 
-	int* HP;
-	float* attack;
-	float strength;
-	float defence;
+	int* HP = new int;;
+	float* attack = new float;
+	float* strength = new float;
+	float* defence = new float;
 
 	int league;
 	int rank;
@@ -53,8 +53,22 @@ public:
 	{
 		this->name = nameInput;
 	}
+	//getName for testing
+	
+	void setAttributes(int HP, float attack, float strength, float defence)
+	{
+		*this->HP = HP;
+		*this->attack = attack;
+		*this->strength = strength;
+		*this->defence = defence;
+	}
 
 	void updateGladiator();
+
+	~Gladiator()
+	{
+		delete HP, attack, strength, defence;
+	}
 
 };
 
@@ -92,10 +106,9 @@ public:
 
 Gladiator generatePlayer(string name, int input)
 {
-	//1=HP focused
-	//2=attack focused
-	//3=strength focused
-	//4=defence focused
+	//1=attack focused
+	//2=strength focused
+	//3=defence focused
 
 	Gladiator* player = new Gladiator;
 
@@ -103,13 +116,16 @@ Gladiator generatePlayer(string name, int input)
 
 	if (input == 1)
 	{
-
+		int HP = (rand() % (10 - 7 + 1)) + 7;
+		float HP = (rand() % (10 - 7 + 1)) + 7;
+		float strength = (rand() % (5 - 1 + 1)) + 1;
+		float HP = (rand() % (10 - 7 + 1)) + 7;
 	}
 }
 
 
 int main(int argc, char* argv[])
 {
-
+	srand(time(NULL));
 
 }
