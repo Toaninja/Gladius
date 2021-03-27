@@ -7,6 +7,7 @@
 using namespace std;
 
 #define LEAGUE_SIZE //atoi(argv[1])				//10 gladiators per league always
+#define CREATE_FOCUS 1.5						//initial multiplier for when player creates their gladiator
 
 typedef struct Background
 {
@@ -104,28 +105,53 @@ public:
 	void standingsUpdate();
 };
 
-Gladiator generatePlayer(string name, int input)
+Gladiator generatePlayer(Gladiator player, string name, int focusInput)
 {
 	//1=attack focused
 	//2=strength focused
 	//3=defence focused
 
-	Gladiator* player = new Gladiator;
+	player.setName(name);
 
-	player->setName(name);
+	int HP = (rand() % (10 - 7 + 1)) + 7;
+	float attack = ((rand() % (5 - 1 + 1)) + 1);
+	float strength = (rand() % (5 - 1 + 1)) + 1;
+	float defence = (rand() % (5 - 1 + 1)) + 1;
 
-	if (input == 1)
+	if (focusInput == 1)
 	{
-		int HP = (rand() % (10 - 7 + 1)) + 7;
-		float HP = (rand() % (10 - 7 + 1)) + 7;
-		float strength = (rand() % (5 - 1 + 1)) + 1;
-		float HP = (rand() % (10 - 7 + 1)) + 7;
+		attack = attack * CREATE_FOCUS;
 	}
+
+	else if (focusInput == 2)
+	{
+		strength = strength * CREATE_FOCUS;
+
+	}
+
+	else
+	{
+		defence = defence * CREATE_FOCUS;
+	}
+
+	player.setAttributes(HP, attack, strength, defence);
+
 }
 
 
 int main(int argc, char* argv[])
 {
 	srand(time(NULL));
+
+	Gladiator player;
+	//Gladiator* player = new Gladiator;
+	string name = "testname";
+	int focusInput;
+
+
+	generatePlayer(player, name, focusInput);
+
+
+
 
 }
