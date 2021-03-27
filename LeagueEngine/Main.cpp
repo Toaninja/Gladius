@@ -1,4 +1,3 @@
-//test
 
 
 #include <iostream>
@@ -50,9 +49,16 @@ public:
 		this->losses = 0;
 	}
 
+	void setName(string nameInput)
+	{
+		this->name = nameInput;
+	}
+
 	void updateGladiator();
 
 };
+
+
 
 class League
 {
@@ -84,13 +90,16 @@ public:
 	void standingsUpdate();
 };
 
-Gladiator generatePlayer(int input)
+Gladiator generatePlayer(string name, int input)
 {
 	//1=HP focused
 	//2=attack focused
 	//3=strength focused
 	//4=defence focused
 
+	Gladiator* player = new Gladiator;
+
+	player->setName(name);
 
 	if (input == 1)
 	{
