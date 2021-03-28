@@ -3,7 +3,9 @@
 //	Use flag? 
 //2D array can be player with W/L against each gladiator 
 //Add failure checks for memory allocation
-//
+//copy constructor and assignment operator for player to be put in array?
+//training focus
+// 
 //Enhancements:
 //round robin to random W/L for random gladiators
 //
@@ -46,6 +48,7 @@ class Gladiator
 	int rank;
 	int wins;
 	int losses;
+	int focus;				//1==attack, 2==strength, 3==defence
 
 public:
 	Gladiator()
@@ -69,6 +72,7 @@ public:
 		this->rank = 0;
 		this->wins = 0;
 		this->losses = 0;
+		this->focus = 0;
 	}
 
 	/*Gladiator(string name, int HP, float attack, float strength, float defence)
@@ -104,7 +108,11 @@ public:
 		*this->defence = defence;
 	}
 
-	friend void generatePlayer(Gladiator player, string name, int focusInput);
+	//friend void generatePlayer(Gladiator player, string name, int focusInput);
+	void setFocus(int focusInput)
+	{
+		this->focus = focusInput;
+	}
 
 
 	//get functions used for testing
@@ -118,7 +126,6 @@ public:
 	}
 	float getAttack()
 	{
-		//this->attack = new float;
 		return *this->attack;
 	}
 	float getStrength()
@@ -128,6 +135,14 @@ public:
 	float getDefence()
 	{
 		return *this->defence;
+	}
+	int getWins()
+	{
+		return this->wins;
+	}
+	int getLosses()
+	{
+		return this->losses;
 	}
 
 	void updateGladiator()
@@ -181,6 +196,14 @@ public:
 	}
 };
 
+
+//typedef struct Match
+//{
+//	Gladiator matches;
+//};
+
+
+
 void generatePlayer(Gladiator *player, string name, int focusInput)
 {
 	//1=attack focused
@@ -205,9 +228,15 @@ void generatePlayer(Gladiator *player, string name, int focusInput)
 		strength = strength * CREATE_FOCUS;
 	}
 
-	else
+	else if(focusInput == 3)
 	{
 		defence = defence * CREATE_FOCUS;
+	}
+
+	else
+	{
+		//error 
+		return;
 	}
 
 	player->setAttributes(HP, attack, strength, defence);
@@ -220,6 +249,7 @@ void generateGladiator(Gladiator array[], int i)
 	string name = "Gladiator" + to_string(i+1);
 	array[i].setName(name);
 
+	//if league tier = 5
 	int HP = (rand() % (10 - 7 + 1)) + 7;				//7-10 HP
 	float attack = ((rand() % (5 - 1 + 1)) + 1);		//1-5 combat stats
 	float strength = (rand() % (5 - 1 + 1)) + 1;
@@ -227,6 +257,24 @@ void generateGladiator(Gladiator array[], int i)
 
 	array[i].setAttributes(HP, attack, strength, defence);
 
+}
+
+void trainingFocus(Gladiator *player, int focusInput)
+{
+	if (focusInput == 1)
+		player->setFocus(focusInput);
+
+	else if(focusInput == 2)
+		player->setFocus(focusInput);
+
+	else if(focusInput == 3)
+		player->setFocus(focusInput);
+
+	else
+	{
+		//invalid
+		return;
+	}
 }
 
 //int main(int argc, char* argv[])
@@ -250,9 +298,21 @@ int main(void)
 		generateGladiator(array, i);
 	}
 
+	//Test random gladiators
 	cout << array[1].getName() << endl;
 	cout << array[8].getName() << endl;
 	cout << array[1].getAttack() << endl;
+
+
+	League league5(5, 0, array);
+	
+	//each pairing 
+
+
+
+
+
+
 
 	return 0;
 }
