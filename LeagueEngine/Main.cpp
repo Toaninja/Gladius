@@ -13,6 +13,7 @@
 #include <iostream>
 #include <time.h>
 #include <stdlib.h>
+#include <string>
 
 using namespace std;
 
@@ -213,6 +214,21 @@ void generatePlayer(Gladiator *player, string name, int focusInput)
 
 }
 
+void generateGladiator(Gladiator array[], int i)
+{
+
+	string name = "Gladiator" + to_string(i+1);
+	array[i].setName(name);
+
+	int HP = (rand() % (10 - 7 + 1)) + 7;				//7-10 HP
+	float attack = ((rand() % (5 - 1 + 1)) + 1);		//1-5 combat stats
+	float strength = (rand() % (5 - 1 + 1)) + 1;
+	float defence = (rand() % (5 - 1 + 1)) + 1;
+
+	array[i].setAttributes(HP, attack, strength, defence);
+
+}
+
 //int main(int argc, char* argv[])
 int main(void)
 {
@@ -225,6 +241,18 @@ int main(void)
 	generatePlayer(player, name, focusInput);
 	cout << player->getAttack() << endl;
 
+
+
+	//Gladiator* array = new Gladiator[10];
+	Gladiator array[10];
+	for (int i = 0; i < 9; i++)
+	{
+		generateGladiator(array, i);
+	}
+
+	cout << array[1].getName() << endl;
+	cout << array[8].getName() << endl;
+	cout << array[1].getAttack() << endl;
 
 	return 0;
 }
