@@ -4,7 +4,7 @@
 //2D array can be player with W/L against each gladiator 
 //Add failure checks for memory allocation
 //copy constructor and assignment operator for player to be put in array?
-//training focus
+//flag member for gladiator, when =2, that gladiator has fought the player twice 
 // 
 //Enhancements:
 //round robin to random W/L for random gladiators
@@ -16,6 +16,8 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -49,6 +51,7 @@ class Gladiator
 	int wins;
 	int losses;
 	int focus;				//1==attack, 2==strength, 3==defence
+	int matchMarker;
 
 public:
 	Gladiator()
@@ -73,6 +76,7 @@ public:
 		this->wins = 0;
 		this->losses = 0;
 		this->focus = 0;
+		this->matchMarker = 0;
 	}
 
 	/*Gladiator(string name, int HP, float attack, float strength, float defence)
@@ -93,6 +97,30 @@ public:
 	void setName(string nameInput)
 	{
 		this->name = nameInput;
+	}
+	void setHP(int HP)
+	{
+		*this->HP = HP;
+	}
+	void setAttack(float attack)
+	{
+		*this->attack = attack;
+	}
+	void setStrength(float strength)
+	{
+		*this->strength = strength;
+	}
+	void setDefence(float defence)
+	{
+		*this->defence = defence;
+	}
+	void setWins(int wins)
+	{
+		this->wins = wins;
+	}
+	void setLoss(int losses)
+	{
+		this->losses = losses;
 	}
 	
 	void setAttributes(int HP, float attack, float strength, float defence)
@@ -144,6 +172,10 @@ public:
 	{
 		return this->losses;
 	}
+	int getFocus()
+	{
+		return this->focus;
+	}
 
 	void updateGladiator()
 	{
@@ -167,27 +199,40 @@ class League
 {
 	int tier;
 	int modifer;
-	Gladiator array[10];
+	//Gladiator array[10];
 
 public:
 	League()
 	{
 		this->tier = 0;
 		this->modifer = 0;
-		this->array[10] = {};
+		//this->array[10] = {};
 	}
 
 	League(int tier, int modifier, Gladiator array[])
 	{
 		this->tier = tier;
 		this->modifer = modifier;
-		for(int i=0; i < 10; i++)
-			this->array[i] = array[i];
+		/*for(int i=0; i < 10; i++)
+			this->array[i] = array[i];*/
 	}
 
 	void setLeagueTier(int x)
 	{
-		this->tier = tier;
+		this->tier = x;
+	}
+	void setModifier(int y)
+	{
+		this->modifer = y;
+	}
+
+	int getLeagueTier()
+	{
+		return this->tier;
+	}
+	int getModifier()
+	{
+		return this->modifer;
 	}
 
 	void standingsUpdate()
@@ -243,11 +288,28 @@ void generatePlayer(Gladiator *player, string name, int focusInput)
 
 }
 
-void generateGladiator(Gladiator array[], int i)
-{
+//void generateGladiator(Gladiator array[], int i)
+//{
+//
+//	string name = "Gladiator" + to_string(i+1);
+//	array[i].setName(name);
+//
+//	//if league tier = 5
+//	int HP = (rand() % (10 - 7 + 1)) + 7;				//7-10 HP
+//	float attack = ((rand() % (5 - 1 + 1)) + 1);		//1-5 combat stats
+//	float strength = (rand() % (5 - 1 + 1)) + 1;
+//	float defence = (rand() % (5 - 1 + 1)) + 1;
+//
+//	array[i].setAttributes(HP, attack, strength, defence);
+//
+//}
 
-	string name = "Gladiator" + to_string(i+1);
-	array[i].setName(name);
+Gladiator* generateGladiator(int i, League object)
+{
+	Gladiator *temp = new Gladiator;
+
+	string name = "Gladiator" + to_string(i + 1);
+	temp->setName(name);
 
 	//if league tier = 5
 	int HP = (rand() % (10 - 7 + 1)) + 7;				//7-10 HP
@@ -255,7 +317,9 @@ void generateGladiator(Gladiator array[], int i)
 	float strength = (rand() % (5 - 1 + 1)) + 1;
 	float defence = (rand() % (5 - 1 + 1)) + 1;
 
-	array[i].setAttributes(HP, attack, strength, defence);
+	temp->setAttributes(HP, attack, strength, defence);
+
+	return temp;
 
 }
 
@@ -277,10 +341,24 @@ void trainingFocus(Gladiator *player, int focusInput)
 	}
 }
 
+
+
+bool cmp(Gladiator* one, Gladiator* two)
+{
+	return one->getWins() > two->getWins();
+}
+
 //int main(int argc, char* argv[])
 int main(void)
 {
 	srand(time(NULL));
+
+	League league1;
+	League league2;
+	League league3;
+	League league4;
+	League league5;
+	League general;
 
 	Gladiator* player = new Gladiator;
 	string name = "testname";
@@ -292,27 +370,39 @@ int main(void)
 
 
 	//Gladiator* array = new Gladiator[10];
-	Gladiator array[10];
+	//Gladiator array[10];
+	vector <Gladiator*> vec;
 	for (int i = 0; i < 9; i++)
 	{
-		generateGladiator(array, i);
+		vec.push_back(generateGladiator(i));
 	}
 
 	//Test random gladiators
-	cout << array[1].getName() << endl;
-	cout << array[8].getName() << endl;
-	cout << array[1].getAttack() << endl;
+	cout << vec[1]->getName() << endl;
+	//cout << [8].getName() << endl;
+	cout << vec[1]->getAttack() << endl;
+	//cout << array[8].getAttack() << endl;*/
 
+	vec.push_back(player);
+	cout << vec[9]->getName() << endl;
 
-	League league5(5, 0, array);
-	
-	//each pairing 
+	//League league5(5, 0, array);
+	vec[9]->setWins(5);
+	vec[5]->setWins(2);
 
+	sort(vec.begin(), vec.end(), cmp);
 
+	for (int i = 0; i < vec.size(); i++)
+	{
+		cout << vec[i]->getName() << " " << vec[i]->getWins() << " " << vec[i]->getLosses() << endl;
+	}
 
+	if (vec[0]->getName() == player->getName() || vec[1]->getName() == player->getName())
+	{
 
-
-
+	}
+	vec.clear();
+	cout << "check" << player->getName() << endl;
 
 	return 0;
 }
