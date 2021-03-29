@@ -6,28 +6,39 @@
  
  #include "Save_and_Load.h"
  
+ using namespace std;
+ 
  /* <Placeholder text-will add documentation used in previously submitted docs>
  */
  bool manualSave(Gladiator array, Match *matches, string array[][]){
+	 FILE* fp;
+	 char* input, filename;
 	 
 	 printf("Name your save file: ");
-	 //get input for file name
+	 fgets(input, 12, stdin); //get input for file name
 	 
-	 //open file with input name
-	 //write data to file
+	 strcpy(filename, input);
+	 strcat(filename, ".dat");
+	
+	 if(fp = fopen(filename, "w") != NULL){ //open file with input name
+		//write data to file
+	 } else {
+		return 0; // if fp == NULL -> return 0 for false / unsuccessful save
+	 }
+	 
 	 //close file
-	 
-	 // if file with <input name> exists return 1 for true
-	 // else return 0 for false
-	 
+	 return 1; // return 1 for true / successful save
  }
  
  /* <Placeholder text-will add documentation used in previously submitted docs>
  */
  bool manualLoad(){
+	 FILE* fp;
 	 
 	 printf("Choose which file to load: ");
+	 //call load menu display function(?)
 	 //file selection
+	 
 	 
 	 //open file that user selected
 	 //file loading (setting variable values)
