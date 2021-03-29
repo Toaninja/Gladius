@@ -3,10 +3,10 @@
  * Date: 
  * Description: This file will hold Save_and_Load.cpp function definitions, include statements, and any potential global variables
  */
- 
+ #include <stdio.h>
  #include <string.h>
  
- bool manualSave();
+ bool manualSave(Gladiator array, Match *matches, string array[][]);
  bool manualLoad();
  
  // bool autoSave();
