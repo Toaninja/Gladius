@@ -21,12 +21,18 @@
 	 strcat(filename, ".dat");
 	
 	 if(fp = fopen(filename, "w") != NULL){ //open file with input name
-		//write data to file
+		//write data to file fprintf()
+		// Data to write:
+		/*
+		All gladiators in the Gladiator array
+		struct of matches
+		winLoss array
+		*/
 	 } else {
 		return 0; // if fp == NULL -> return 0 for false / unsuccessful save
 	 }
 	 
-	 //close file
+	 fclose(fp); //close file
 	 return 1; // return 1 for true / successful save
  }
  
@@ -34,18 +40,26 @@
  */
  bool manualLoad(){
 	 FILE* fp;
+	 char* filename;
 	 
 	 printf("Choose which file to load: ");
 	 //call load menu display function(?)
-	 //file selection
+	 //file selection - could do user input simply. Check UI functions
 	 
+	 if(fp = fopen(filename, "w") != NULL){ //open file that user selected
+		//file loading (setting variable values) fscanf()
+		// Data to load: 
+		/*
+		All gladiators in the Gladiator array
+		struct of matches
+		winLoss array
+		*/
+	 } else {
+		return 0; // if fp == NULL -> return 0 for false / unsuccessful load
+	 }
 	 
-	 //open file that user selected
-	 //file loading (setting variable values)
-	 //close file
-	 
-	 // if the file loaded properly return 1 for true
-	 // else return 0 for false
+	 fclose(fp);//close file
+	 return 1; // if the file loaded properly return 1 for true
  }
  
  /* <Time & resource permitting this function will be developed>
