@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <random>
+#include "stories.h"
 using namespace std;
 
 class Gladiator
@@ -90,7 +91,7 @@ Gladiator combatLoop(Gladiator g1, Gladiator g2) {
 
 			g2Health - hit + block;
 
-			fstories(g2Health, hit, block);
+			fstories(g1.name, g2Health, hit, block);
 
 			if (g2Health <= 0) {
 				return g1;
@@ -109,7 +110,18 @@ void engine(Gladiator g1, Gladiator g2) {
 
 	Gladiator winner, loser;
 
+	winner = combatLoop(g1, g2);
 
+	if (winner.name == g1.name && winner.focus == g1.focus) {
+		loser = g2;
+		
+		g1.wins++;
+		g2.losses++;
+		g2.matchMarker;			//bitwise operator here
+	}
+	else {
+		loser = g1;
+	}
 
 
 
