@@ -39,6 +39,7 @@ public:
 
 	friend void engine(Gladiator g1, Gladiator g2);
 	friend Gladiator combatLoop(Gladiator g1, Gladiator g2);
+	friend void training(Gladiator winner, Gladiator loser);
 };
 
 float roll(int x = 101, int y = 100) {
@@ -118,9 +119,15 @@ void engine(Gladiator g1, Gladiator g2) {
 		g1.wins++;
 		g2.losses++;
 		g2.matchMarker;			//bitwise operator here
+		training(g1, g2);
 	}
 	else {
 		loser = g1;
+
+		g2.wins++;
+		g1.losses++;
+		g2.matchMarker;
+		training(g2, g1);
 	}
 
 
