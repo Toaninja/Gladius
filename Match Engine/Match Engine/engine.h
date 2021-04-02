@@ -69,9 +69,10 @@ int sign() {
 
 Gladiator combatLoop(Gladiator g1, Gladiator g2) {
 
-	//set up 2 values to represent initial HPs
+	float g1Health = *g1.HP;
+	float g2Health = *g2.HP;
 
-	if (g1.HP > 0 || g2.HP > 0)
+	if (g1Health > 0 || g2Health > 0)
 	{
 		if (*g1.attack * roll(101, 1) > 0.5) {
 
@@ -79,14 +80,26 @@ Gladiator combatLoop(Gladiator g1, Gladiator g2) {
 
 			float block = *g2.defence * roll(*g2.defence);
 
+			if (hit < block) {
+				block = hit;
+			}
+			if (hit > g2Health)
+			{
+				hit = g2Health;
+			}
 
+			g2Health - hit + block;
 
+			fstories(g2Health, hit, block);
 
-			if (g2.HP <= 0) {
+			if (g2Health <= 0) {
 				return g1;
 			}
 
 		};
+
+		combatLoop(g2, g1);
+
 	}
 
 };
