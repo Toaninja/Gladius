@@ -10,37 +10,37 @@
  
  /* <Placeholder text-will add documentation used in previously submitted docs>
  */
- bool manualSave(Gladiator array, Match *matches, string array[][]){
+ bool manualSave(vector <Gladiator*> array, League general){
 	 FILE* fp;
 	 char* input, filename;
+	 int returnValue = 0;
 	 
 	 printf("Name your save file: ");
 	 fgets(input, 12, stdin); //get input for file name
 	 
-	 strcpy(filename, input); // this may include a null return character, may need to remove the last character on this string 
+	 strcpy(filename, input); // this may include a null return character, may need to remove the last character on this string -> strcat_s
 	 strcat(filename, ".dat");
 	
 	 if(fp = fopen(filename, "w") != NULL){ //open file with input name
 		//write data to file fprintf()
 		// Data to write:
-		/*
-		All gladiators in the Gladiator array
-		struct of matches
-		winLoss array
-		*/
+		// All gladiators in the Gladiator array
 	 } else {
-		return 0; // if fp == NULL -> return 0 for false / unsuccessful save
+		return returnValue; // if fp == NULL -> return 0 for false / unsuccessful save
 	 }
 	 
 	 fclose(fp); //close file
-	 return 1; // return 1 for true / successful save
+	 returnValue; // bitwise value change from 0 to 1
+	 return returnValue; // return 1 for true / successful save
  }
+ 
  
  /* <Placeholder text-will add documentation used in previously submitted docs>
  */
  bool manualLoad(){
 	 FILE* fp;
 	 char* filename;
+	 int returnValue = 0;
 	 
 	 printf("Choose which file to load: ");
 	 //call load menu display function(?)
@@ -49,21 +49,18 @@
 	 if(fp = fopen(filename, "w") != NULL){ //open file that user selected
 		//file loading (setting variable values) fscanf()
 		// Data to load: 
-		/*
-		All gladiators in the Gladiator array
-		struct of matches
-		winLoss array
-		*/
+		// All gladiators in the Gladiator array
 	 } else {
-		return 0; // if fp == NULL -> return 0 for false / unsuccessful load
+		return returnValue; // if fp == NULL -> return 0 for false / unsuccessful load
 	 }
 	 
 	 fclose(fp);//close file
-	 return 1; // if the file loaded properly return 1 for true
+	 returnValue; // bitwise value change
+	 return returnValue; // if the file loaded properly return 1 for true
  }
  
  /* <Time & resource permitting this function will be developed>
- bool autoSave(){
+ bool autoSave(vector <Gladiator*> array, League general){
 	 FILE* fp;
 	 char* input, filename;
 	 
@@ -76,8 +73,6 @@
 		//write data to file fprintf()
 		// Data to write:
 			//All gladiators in the Gladiator array
-			//struct of matches
-			//winLoss array
 	 } else {
 		return 0; // if fp == NULL -> return 0 for false / unsuccessful save
 	 }
