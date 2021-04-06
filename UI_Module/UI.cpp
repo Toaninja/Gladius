@@ -6,12 +6,13 @@
 void trainingFocus(){cout << UNDERLINE << "\t\tSelect the training focus of the day" << CLOSEUNDERLINE << endl;}
 void ViewStandings(){cout << UNDERLINE << "\t\tViewing the standings of the players" << CLOSEUNDERLINE << endl;}
 void LoadGame() {cout << UNDERLINE << "\t\tLoad Game" << CLOSEUNDERLINE << endl;}
-
+void NewGame() { cout << UNDERLINE << "\t\tNew Game" << CLOSEUNDERLINE << endl; }
 
 
 void DisplayTraining(){ system("cls"); trainingFocus(); }
 void DisplayLeague(){ system("cls"); ViewStandings();}
 void DisplayLoad() {system("cls"); LoadGame();}
+void DisplyNewGame() { system("cls"); NewGame(); }
 
 ////////////////////////////////////////////////
 
@@ -27,18 +28,23 @@ void selectMenu()
     switch (choice) 
     {
     case 1:
+        DisplyNewGame();
+        break;
+
+
+    case 2:
         DisplayTraining();
         break;
 
-    case 2:
+    case 3:
         DisplayLeague();
         break;
 
-    case 3:
+    case 4:
         DisplayLoad();
         break;
         
-    case 4:
+    case 5:
         cout << endl << "Exiting... " << endl << endl;
         cout << "Exiting in 3 seconds..." << endl;
         Sleep(3000);
@@ -69,10 +75,11 @@ void printMenu()
         << "_________________________________";
     cout << endl << "|\t\t\t\t\t\t\t\t|";
     cout << endl << "|\t\t\t\t\t\t\t\t|";
-    cout << endl << "|\t\t\t 1. Training focus \t\t\t|";
-    cout << endl << "|\t\t\t 2. View Standings \t\t\t|";
-    cout << endl << "|\t\t\t 3. Load Game \t\t\t\t|";
-    cout << endl << "|\t\t\t 4. Exit \t\t\t\t|";
+    cout << endl << "|\t\t\t 1. New Game \t\t\t\t|";
+    cout << endl << "|\t\t\t 2. Training focus \t\t\t|";
+    cout << endl << "|\t\t\t 3. View Standings \t\t\t|";
+    cout << endl << "|\t\t\t 4. Load Game \t\t\t\t|";
+    cout << endl << "|\t\t\t 5. Exit \t\t\t\t|";
     cout << endl << "|\t\t\t\t\t\t\t\t|";
     cout << endl << "|\t\t\t\t\t\t\t\t|";
     cout << endl << "|\t\t\t\t\t\t\t\t|";
