@@ -16,6 +16,22 @@ void DisplyNewGame() { system("cls"); NewGame(); }
 
 ////////////////////////////////////////////////
 
+////////Actual code for View Standing, placed it as comment because it shows error here////////////
+
+//void displayViewStandings(vector <Gladiator*> vec)
+//{
+//    cout << "\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 VIEW STANDINGS \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
+//    cout << "\t\t======================================================================" << endl;
+//    cout << "\t\t\tGladiator Name\t\t\tWins\t\tLosses" << endl;
+//    cout << "\t\t======================================================================" << endl;
+//
+//    for (int i = 0; i < vec.size(); i++)											//test output for standings 
+//    {
+//        cout << "\t\t\t" << vec[i]->getName() << "\t\t\t" << vec[i]->getWins() << "\t\t" << vec[i]->getLosses() << endl << endl;
+//    }
+//
+//    cout << "\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
+//}
 
 // Function to take user choices and perform
 // the appropriate operation
