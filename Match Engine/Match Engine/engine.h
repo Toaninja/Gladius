@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 #include <random>
 #include "stories.h"
 using namespace std;
@@ -104,6 +105,17 @@ Gladiator combatLoop(Gladiator g1, Gladiator g2) {
 	}
 
 };
+
+Gladiator g1 = ; //Find a way to always put our gladiator here
+
+Gladiator selection() {
+	for(int i = 0; i < 9; i++)
+	
+
+}
+
+
+
 
 
 void engine(Gladiator g1, Gladiator g2) {
