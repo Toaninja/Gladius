@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-string* fstories(string* name, float health, float hit, float block) {
+string* fstories(string name, float health, float hit, float block) {
 
 	if (health > 0) {
 		cout << name << "dealt " << hit << " and was blocked for " << block << endl;
@@ -19,5 +19,5 @@ string* fstories(string* name, float health, float hit, float block) {
 	}
 
 	//these should be appended to one another into a string and then returned, but as an object that has a certain size? Potentially in a struct
-	return name;
+	return ;
 }

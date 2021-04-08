@@ -1,2 +1,6 @@
 *.jfm
 *.opendb
+*.suo
+*.db
+*.db-shm
+*.ipch

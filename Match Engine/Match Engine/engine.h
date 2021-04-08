@@ -36,7 +36,6 @@ public:
 	void promote();
 	void demote();
 
-
 	friend void engine(Gladiator g1, Gladiator g2);
 	friend Gladiator combatLoop(Gladiator g1, Gladiator g2);
 	friend void training(Gladiator winner, Gladiator loser);
@@ -85,8 +84,8 @@ Gladiator combatLoop(Gladiator g1, Gladiator g2) {
 			if (hit < block) {
 				block = hit;
 			}
-			if (hit > g2Health)
-			{
+
+			if (hit > g2Health) {
 				hit = g2Health;
 			}
 
