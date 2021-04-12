@@ -110,16 +110,23 @@ Gladiator g1; //Find a way to always put our gladiator here
 
 Gladiator selection() {
 	for (int i = 0; i < 9; i++)
-		;
-	
-
+	{
+		if (vector[i].games < 2)
+		{
+			vector[i].games++;
+			return vector[i];
+		}
+	}
 }
 
 
 
 
 
-void engine(Gladiator g1, Gladiator g2) {
+void engine() {
+
+	g1 = vector;
+	g2 = selection(vector)
 
 	Gladiator winner, loser;
 
