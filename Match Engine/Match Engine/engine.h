@@ -121,12 +121,10 @@ Gladiator selection() {
 
 
 
+void engine(vector) {
 
-
-void engine() {
-
-	g1 = vector;
-	g2 = selection(vector)
+	g1 = vector[9];
+	g2 = selection(vector);
 
 	Gladiator winner, loser;
 
