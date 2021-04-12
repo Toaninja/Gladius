@@ -15,40 +15,40 @@ using namespace std;
 
 
 
-	League::League()
-	{
-		this->tier = 0;
-		this->modifer = 0;
-	}
+League::League()
+{
+	this->tier = 0;
+	this->modifier = 0;
+}
 
-	League::League(int tier, int modifier)
-	{
-		this->tier = tier;
-		this->modifer = modifier;
+League::League(int tier, int modifier)
+{
+	this->tier = tier;
+	this->modifier = modifier;
 
-	}
+}
 
-	void League::setLeagueTier(int x)
-	{
-		this->tier = x;
-	}
-	void League::setModifier(int y)
-	{
-		this->modifer = y;
-	}
+void League::setLeagueTier(int x)
+{
+	this->tier = x;
+}
+void League::setModifier(int y)
+{
+	this->modifier = y;
+}
 
-	int League::getLeagueTier()
-	{
-		return this->tier;
-	}
-	int League::getModifier()
-	{
-		return this->modifer;
-	}
+int League::getLeagueTier()
+{
+	return this->tier;
+}
+int League::getModifier()
+{
+	return this->modifier;
+}
 
-	/*void standingsUpdate()
-	{
+/*void standingsUpdate()
+{
 
-	}*/
+}*/
 
 	

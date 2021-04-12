@@ -15,7 +15,7 @@ using namespace std;
 class League
 {
 	int tier;
-	int modifer;
+	int modifier;
 
 public:
 	League();

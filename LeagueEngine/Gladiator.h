@@ -31,21 +31,6 @@ class Gladiator
 public:
 	Gladiator();
 
-	/*Gladiator(string name, int HP, float attack, float strength, float defence)
-	{
-		this->name = name;
-
-		this->HP = new int;
-		this->attack = new float;
-		this->strength = new float;
-		this->defence = new float;
-
-		*this->HP = HP;
-		*this->attack = attack;
-		*this->strength = strength;
-		*this->defence = defence;
-	}*/
-
 	void setName(string nameInput);
 	void setHP(int HP);
 	void setAttack(float attack);
