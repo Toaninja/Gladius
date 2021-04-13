@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 		vec.push_back(generateGladiator(i, general));								//assign each gladiator to growing index until 
 	}																				//index 8 (9 gladiators)
 
-	cout << vec[1]->getName() << endl;										//testing if random gladiators were produced and members populated
+	cout << vec[1]->getName() << endl;												//testing if random gladiators were produced and members populated
 	cout << vec[1]->getAttack() << endl;
 
 	vec.push_back(player);															//add player to gladiator array
@@ -76,8 +76,8 @@ int main(int argc, char* argv[])
 
 	cout << vec[9]->getAttack() << endl;
 
-	//vec[9]->setWins(5);																//testing sort function to see if standings sorted by wins
-	//vec[5]->setWins(2);
+
+	
 
 	sort(vec.begin(), vec.end(), cmp);
 

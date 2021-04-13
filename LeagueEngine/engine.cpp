@@ -117,19 +117,17 @@ void engine(vector <Gladiator*> &vec) {
 		training(g1, g2);
 
 
-		g1->setWins(g1->getWins() + 1);
-		g2->setLoss(g2->getLosses() + 1);
-		g2->setMatchMarker();
+		g1->setWins(wins++);
+		g2->setLoss(loss++);
+		//g2->setMatchMarker();
 	}
 	else {
 
 		training(g2, g1);
 
-		g2->setWins(g2->getWins() + 1);
-		g1->setMatchMarker();
-		g1->setLoss(g1->getLosses() + 1);
-
-		
+		g2->setWins(wins++);
+		//g1->setMatchMarker();
+		g1->setLoss(loss++);
 
 	}
 
