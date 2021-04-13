@@ -22,7 +22,7 @@ Gladiator::Gladiator()
 	//this->background.city = "Unknown";
 	//this->background.trait = "Unknown";
 
-	HP = new int;
+	HP = new float;
 	attack = new float;
 	strength = new float;
 	defence = new float;
@@ -96,7 +96,7 @@ string Gladiator::getName()
 {
 	return this->name;
 }
-int Gladiator::getHP()
+float Gladiator::getHP()
 {
 	return *this->HP;
 }

@@ -17,7 +17,7 @@ class Gladiator
 	//Background background;
 
 
-	int* HP;
+	float* HP;
 	float* attack;
 	float* strength;
 	float* defence;
@@ -47,7 +47,7 @@ public:
 
 	//get functions, some created just for testing
 	string getName();
-	int getHP();
+	float getHP();
 	float getAttack();
 	float getStrength();
 	float getDefence();

@@ -1,18 +1,5 @@
 #include "engine.h"
-
-
-/*
-if win
-training x 1.0
-if loss
-training x 0.7
-
-if 1...
-if 2...
-if 3...
-
-
-*/
+#include "training.h"
 
 //1==attack, 2==strength, 3==defence
 
