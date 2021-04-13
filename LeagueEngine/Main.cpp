@@ -17,6 +17,7 @@
 #include <vector>
 #include <algorithm>
 
+#include "engine.h"
 #include "Gladiator.h"
 #include "League.h"
 
@@ -66,6 +67,9 @@ int main(int argc, char* argv[])
 
 
 	//pass vector array of gladiators and player to match engine, get results
+
+	engine(vec);
+
 
 	vec[9]->setWins(5);																//testing sort function to see if standings sorted by wins
 	vec[5]->setWins(2);

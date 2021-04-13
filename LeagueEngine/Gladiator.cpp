@@ -85,6 +85,11 @@ void Gladiator::setFocus(int focusInput)
 	this->focus = focusInput;
 }
 
+void Gladiator::setMatchMarker()
+{
+	this->matchMarker++;
+}
+
 
 //get functions, some created just for testing
 string Gladiator::getName()
@@ -122,6 +127,11 @@ int Gladiator::getFocus()
 int Gladiator::getLeague()
 {
 	return this->league;
+}
+
+int Gladiator::getMatchMarker()
+{
+	return this->matchMarker;
 }
 
 Gladiator::~Gladiator()

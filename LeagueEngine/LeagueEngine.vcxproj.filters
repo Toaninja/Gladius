@@ -24,12 +24,21 @@
     <ClCompile Include="League.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="training.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gladiator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="League.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stories.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -39,6 +39,7 @@ public:
 	void setWins(int wins);
 	void setLoss(int losses);
 	void setFocus(int focusInput);
+	void setMatchMarker();
 	void setAttributes(int HP, float attack, float strength, float defence);
 
 	void promote();
@@ -51,11 +52,15 @@ public:
 	float getStrength();
 	float getDefence();
 	int getWins();
+	int getMatchMarker();
 	int getLosses();
 	int getFocus();
 	int getLeague();
 
 	~Gladiator();
+
+	friend Gladiator combatLoop(Gladiator g1, Gladiator g2);
+	friend void training(Gladiator winner, Gladiator loser);
 };
 
 void generatePlayer(Gladiator* player, string name, int focusInput);
