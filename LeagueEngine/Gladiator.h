@@ -17,10 +17,10 @@ class Gladiator
 	//Background background;
 
 
-	float* HP;
-	float* attack;
-	float* strength;
-	float* defence;
+	float *HP;
+	float *attack;
+	float *strength;
+	float *defence;
 
 	int league;
 	int wins;

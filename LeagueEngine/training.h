@@ -2,4 +2,4 @@
 #include "engine.h"
 #include "Gladiator.h"
 
-void training(Gladiator winner, Gladiator loser);
+void training(Gladiator* winner, Gladiator* loser);

@@ -68,11 +68,16 @@ int main(int argc, char* argv[])
 
 	//pass vector array of gladiators and player to match engine, get results
 
+	vec[9]->setFocus(1);
+
+	cout << vec[9]->getAttack() << endl;
+
 	engine(vec);
 
+	cout << vec[9]->getAttack() << endl;
 
-	vec[9]->setWins(5);																//testing sort function to see if standings sorted by wins
-	vec[5]->setWins(2);
+	//vec[9]->setWins(5);																//testing sort function to see if standings sorted by wins
+	//vec[5]->setWins(2);
 
 	sort(vec.begin(), vec.end(), cmp);
 
