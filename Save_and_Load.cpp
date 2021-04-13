@@ -44,12 +44,16 @@ bool manualSave(vector <Gladiator*> array, League general){
 	}
 	
 	
-	if(fp = fopen(filename, "w") != NULL){ //open file with input name
+	if((fp = fopen(filename, "w")) != NULL){ //open file with input name
+		// Before all gladiators are saved, save the league info (tier and modifier) at the start of the file.
+		// Saved on the first line
+		fprintf(fp, "%d %d\n", ); // League -> int tier, int modifier
+		
 		for (int i = 0; i < numOfGladiators; i++) { //will print to the named file one line at a time until it has printed a line for every gladiator/etc
-			fprintf(fp, ); // saving a single gladiator each loop, incrementing which one with int i
+			// saving a single gladiator each loop, incrementing which one with int i
+			fprintf(fp, "",); 
 		}
-		// after all gladiators are saved, save the league info (tier and number) at the end of the file on an eleventh line
-		fprintf(fp, ); //saving the league info on the last line of the file
+		
 
 
 		/* SAMPLE SAVE
@@ -60,10 +64,6 @@ bool manualSave(vector <Gladiator*> array, League general){
 					}
 				}
 		*/
-
-		//write data to file fprintf()
-		// Data to write:
-		// All gladiators in the Gladiator array
 	} else {
 		return returnValue; // if fp == NULL -> return 0 for false / unsuccessful save
 	}
@@ -108,7 +108,18 @@ bool manualLoad() {
 		printf("Error: no such save slot %d", menuChoice);
 	}
 	
-	if(fp = fopen(filename, "r+") != NULL){ //open file that user selected
+	if((fp = fopen(filename, "r+")) != NULL){ //open file that user selected
+		//Loading first line, the league info
+		fscanf(fp, "%d %d", ); // League -> int tier, int modifier
+
+		//after loading the league info, load the gladiator info. One gladiator per line.
+		while (fscanf(fp, "", ) != EOF) { //While the end of file has not been reached, read the following info in the given format
+			//store the data
+
+		}
+
+
+
 		/*SAMPLE LOAD		 
 		while (fscanf(fp, "%d %d %s %s", &storeID, &storeBool, FlightList[flightID].Plane[i].firstName, FlightList[flightID].Plane[i].lastName) != EOF) {
 			FlightList[flightID].Plane[i].seatID = storeID;
@@ -117,12 +128,6 @@ bool manualLoad() {
 			i++;
 		}
 		*/
-
-		//fscanf();
-
-		//file loading (setting variable values) fscanf()
-		// Data to load: 
-		// All gladiators in the Gladiator array
 	} else {
 		return returnValue; // if fp == NULL -> return 0 for false / unsuccessful load
 	}
