@@ -154,7 +154,7 @@ void generatePlayer(Gladiator* player, string name, int focusInput)					//genera
 	player->setName(name);
 
 	int HP = (rand() % (10 - 7 + 1)) + 7;				//7-10 HP
-	float attack = ((rand() % (5 - 1 + 1)) + 1);		//1-5 combat stats
+	float attack = ((rand() % (5 - 1 + 1)) + 5);		//1-5 combat stats
 	float strength = (rand() % (5 - 1 + 1)) + 1;
 	float defence = (rand() % (5 - 1 + 1)) + 1;
 

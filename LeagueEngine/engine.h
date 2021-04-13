@@ -15,7 +15,7 @@ int sign();
 
 
 //Attack is a percentage, strength is damage value, defence is blocking, HP is max health
-Gladiator combatLoop(Gladiator* g1, Gladiator* g2, float g1Health, float g2Health, float g1Str, float g2Def, float g1Att);
+Gladiator *combatLoop(Gladiator* g1, Gladiator* g2, float g1Health, float g2Health, float g1Str, float g2Def, float g1Att);
 
 
 
