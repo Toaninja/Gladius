@@ -104,6 +104,7 @@ void engine(vector <Gladiator*> vec) {
 	winner = combatLoop(*g1, *g2);
 
 	g1->setHP(g1Health);
+	g2->setHP(g2Health);
 
 
 	if (winner.getName() == g1->getName() && winner.getFocus() == g1->getFocus()) {
