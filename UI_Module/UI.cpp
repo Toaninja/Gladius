@@ -3,35 +3,59 @@
 
 ///////////////////////PSEUDO CODE///////////////
 
-void trainingFocus(){cout << UNDERLINE << "\t\tSelect the training focus of the day" << CLOSEUNDERLINE << endl;}
-void ViewStandings(){cout << UNDERLINE << "\t\tViewing the standings of the players" << CLOSEUNDERLINE << endl;}
 void LoadGame() {cout << UNDERLINE << "\t\tLoad Game" << CLOSEUNDERLINE << endl;}
 void NewGame() { cout << UNDERLINE << "\t\tNew Game" << CLOSEUNDERLINE << endl; }
 
-
-void DisplayTraining(){ system("cls"); trainingFocus(); }
-void DisplayLeague(){ system("cls"); ViewStandings();}
 void DisplayLoad() {system("cls"); LoadGame();}
 void DisplyNewGame() { system("cls"); NewGame(); }
 
 ////////////////////////////////////////////////
 
-////////Actual code for View Standing, placed it as comment because it shows error here////////////
+void trainingFocus(Gladiator* player)
+{
+    int focusInput;
+    cout << "\t\tEnter your choice: ";
+    cin >> focusInput;
+    cout << "\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
+    switch (focusInput)
+    {
+    case 1: player->setFocus(focusInput); break;
+    case 2: player->setFocus(focusInput); break;
+    case 3: player->setFocus(focusInput); break;
 
-//void displayViewStandings(vector <Gladiator*> vec)
-//{
-//    cout << "\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 VIEW STANDINGS \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
-//    cout << "\t\t======================================================================" << endl;
-//    cout << "\t\t\tGladiator Name\t\t\tWins\t\tLosses" << endl;
-//    cout << "\t\t======================================================================" << endl;
-//
-//    for (int i = 0; i < vec.size(); i++)											//test output for standings 
-//    {
-//        cout << "\t\t\t" << vec[i]->getName() << "\t\t\t" << vec[i]->getWins() << "\t\t" << vec[i]->getLosses() << endl << endl;
-//    }
-//
-//    cout << "\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
-//}
+    default:
+        cout << endl << "Please select a valid option" << endl;
+        DisplayTraining(player);
+    }
+}
+
+void DisplayTraining(Gladiator* player)
+{
+    cout << "\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 TRAINING FOCUS \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
+    cout << "\t\t======================================================================" << endl;
+    cout << "\t\tPlease select one of the training focus listed below:" << endl;
+    cout << "\t\t======================================================================" << endl;
+    cout << "\t\t1. Attack" << endl;
+    cout << "\t\t2. Strength" << endl;
+    cout << "\t\t3. Defence" << endl << endl;
+    trainingFocus(player);
+
+}
+
+void DisplayStandings(vector <Gladiator*> vec)
+{
+    cout << "\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 VIEW STANDINGS \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
+    cout << "\t\t======================================================================" << endl;
+    cout << "\t\t\tGladiator Name\t\t\tWins\t\tLosses" << endl;
+    cout << "\t\t======================================================================" << endl;
+
+    for (int i = 0; i < vec.size(); i++)											//test output for standings 
+    {
+        cout << "\t\t\t" << vec[i]->getName() << "\t\t\t" << vec[i]->getWins() << "\t\t" << vec[i]->getLosses() << endl << endl;
+    }
+
+    cout << "\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
+}
 
 // Function to take user choices and perform
 // the appropriate operation
@@ -39,7 +63,7 @@ void selectMenu()
 {
     int choice;
     cout << endl << "Enter your choice : ";
-    scanf("%d", &choice);
+    scanf_s("%d", &choice);
 
     switch (choice) 
     {
@@ -49,11 +73,11 @@ void selectMenu()
 
 
     case 2:
-        DisplayTraining();
+        DisplayTraining(player);
         break;
 
     case 3:
-        DisplayLeague();
+        DisplayStandings();
         break;
 
     case 4:
