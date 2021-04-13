@@ -114,7 +114,7 @@ void engine(vector <Gladiator*> &vec) {
 
 		g1->setWins(wins++);
 		g2->setLoss(loss++);
-		g2->setMatchMarker();
+		//g2->setMatchMarker();
 	}
 	else {
 
@@ -122,11 +122,13 @@ void engine(vector <Gladiator*> &vec) {
 		int loss = g1->getLosses();
 
 		g2->setWins(wins++);
-		g1->setMatchMarker();
+		//g1->setMatchMarker();
 		g1->setLoss(loss++);
 
 	}
 
 	//training(g2, g1);
-
+	cout << vec[9]->getWins() << endl;
+	cout << vec[0]->getWins() << endl;
+	cout << vec[0]->getMatchMarker() << endl;
 };
