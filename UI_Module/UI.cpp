@@ -11,7 +11,7 @@ void DisplyNewGame() { system("cls"); NewGame(); }
 
 ////////////////////////////////////////////////
 
-void trainingFocus(Gladiator* player)
+void trainingFocus_UI(Gladiator* player)
 {
     char focusInput;
     cout << "\t\tEnter your choice: ";
@@ -25,11 +25,11 @@ void trainingFocus(Gladiator* player)
 
     default:
         cout << endl << "Please select a valid option" << endl;
-        displayTraining(player);
+        displayTraining_UI(player);
     }
 }
 
-void displayTraining(Gladiator* player)
+void displayTraining_UI(Gladiator* player)
 {
     cout << "\n\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 TRAINING FOCUS \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
     cout << "\t\t======================================================================" << endl;
@@ -38,11 +38,10 @@ void displayTraining(Gladiator* player)
     cout << "\t\t1. Attack" << endl;
     cout << "\t\t2. Strength" << endl;
     cout << "\t\t3. Defence" << endl << endl;
-    trainingFocus(player);
-
+    trainingFocus_UI(player);
 }
 
-void DisplayStandings(vector <Gladiator*> vec)
+void DisplayStandings_UI(vector <Gladiator*> vec)
 {
     cout << "\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 VIEW STANDINGS \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
     cout << "\t\t======================================================================" << endl;
@@ -57,9 +56,31 @@ void DisplayStandings(vector <Gladiator*> vec)
     cout << "\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
 }
 
+void newgame_UI(Gladiator* player)
+{
+    string name;
+    int focusInput;
+    cout << "Plase select your Gladiator's name:";
+    cin >> name;
+    cout << "\n\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 TRAINING FOCUS \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
+    cout << "\t\t======================================================================" << endl;
+    cout << "\t\tPlease select one of the training focus listed below:" << endl;
+    cout << "\t\t======================================================================" << endl;
+    cout << "\t\t1. Attack" << endl;
+    cout << "\t\t2. Strength" << endl;
+    cout << "\t\t3. Defence" << endl << endl;
+    cout << "\t\tEnter your choice: ";
+    cin >> focusInput;
+
+    //getname
+    //focusinput
+    generatePlayer(player, name, focusinput);
+
+}
+
 // Function to take user choices and perform
 // the appropriate operation
-void selectMenu()
+void selectMenu_UI()
 {
     int choice;
     cout << endl << "Enter your choice : ";
@@ -68,16 +89,16 @@ void selectMenu()
     switch (choice) 
     {
     case 1:
-        DisplyNewGame();
+        newgame_UI(Gladiator * player);
         break;
 
 
     case 2:
-        DisplayTraining(player);
+        DisplayTraining_UI(player);
         break;
 
     case 3:
-        DisplayStandings();
+        DisplayStandings_UI();
         break;
 
     case 4:
@@ -92,20 +113,12 @@ void selectMenu()
 
     default:
         cout << endl << "The choice you entered was invalid. Please try again :) " << endl;
-        printMenu();
+        printMenu_UI();
     }
 }
 
-void newgame()
-{
-    Gladiator* player = new gladiator;
-    //getname
-    //focusinput
-    generatePlayer(player, name, focusinput);
-
-}
 // Function to print all the menus
-void printMenu()
+void printMenu_UI()
 {
     // Set output color to blue
     // background and white foreground
@@ -136,7 +149,7 @@ void printMenu()
          << "______________________________\xB2" << endl;
 
     // Function call for select options
-    selectMenu();
+    selectMenu_UI();
 }
 
 
@@ -144,6 +157,6 @@ void printMenu()
 int main()
 {
     // Function Call
-    printMenu();
+    printMenu_UI();
     return 0;
 }

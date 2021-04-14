@@ -30,8 +30,12 @@
 
 using namespace std;
 
-void printMenu();
-
+void printMenu_UI();
+void trainingFocus_UI(Gladiator* player);
+void displayTraining_UI(Gladiator* player)
+void DisplayStandings_UI(vector <Gladiator*> vec)
+void selectMenu_UI()
+void newgame_UI(Gladiator* player)
 
 
 #endif // !UI
