@@ -7,7 +7,6 @@
 #include "Save_and_Load.h"
  
 using namespace std;
- 
 
 //This function will save the game to a save slot indicated by the user
 //It takes the Gladiator array, as well as the league information and stores them-
@@ -137,7 +136,7 @@ bool manualLoad() {
 	return returnValue; // if the file loaded properly return 1 for true
 }
  
-/* <Time & resource permitting this function will be developed>
+/* 
 bool autoSave(vector <Gladiator*> array, League general){
 	FILE* fp;
 	char* input, filename;
