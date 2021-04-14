@@ -13,10 +13,10 @@ using namespace std;
 //in a .dat file
 bool manualSave(vector <Gladiator*> array, League general){
 	FILE* fp;
-	char filename[SAVE_NAME_LENGTH];
+	char filename[5][SAVE_NAME_LENGTH] = { "manual_save_1.dat", "manual_save_2.dat", "manual_save_3.dat", "manual_save_4.dat", "manual_save_5.dat" };
 	int returnValue = 0, numOfGladiators = 10, menuChoice;
 	 
-	printf("Enter the number of the save slot to load\n");
+	printf("Enter the number of the save slot to save to\n");
 	printf("Slot 1\n");
 	printf("Slot 2\n");
 	printf("Slot 3\n");
@@ -25,35 +25,24 @@ bool manualSave(vector <Gladiator*> array, League general){
 
 	printf("Enter your choice: ");
 	scanf("%d", &menuChoice);
+	menuChoice--;
 
-	switch (menuChoice)
-	{
-	case 1:
-		strcpy(filename, "manual_save_1.dat");
-	case 2:
-		strcpy(filename, "manual_save_2.dat");
-	case 3:
-		strcpy(filename, "manual_save_3.dat");
-	case 4:
-		strcpy(filename, "manual_save_4.dat");
-	case 5:
-		strcpy(filename, "manual_save_5.dat");
-	default:
-		printf("Error: no such save slot %d", menuChoice);
+	if (menuChoice > 4 || menuChoice < 0) {
+		printf("Error: No such save slot %d", menuChoice);
 	}
 	
 	
-	if((fp = fopen(filename, "w")) != NULL){ //open file with input name
+	if((fp = fopen(filename[menuChoice], "w")) != NULL){ //open file with input name
 		// Before all gladiators are saved, save the league info (tier and modifier) at the start of the file.
 		// Saved on the first line
-		fprintf(fp, "%d %d\n", ); // League -> int tier, int modifier
+		fprintf(fp, "%d %d\n", getLeagueTier(), getModifier()); // League -> int tier, int modifier
 		
 		for (int i = 0; i < numOfGladiators; i++) { //will print to the named file one line at a time until it has printed a line for every gladiator/etc
 			// saving a single gladiator each loop, incrementing which one with int i
-			fprintf(fp, "",); 
+			//string name ints: hp, attack, strength, defence floats: league, wins, losses, focus, matchmarker
+			fprintf(fp, "%s %f %f %f %f %d %d %d %d %d\n", vec[i]->getName(), vec[i]->getHP(), vec[i]->getAttack(), vec[i]->getStrength(), vec[i]->getDefence(), vec[i]->getLeague(), vec[i]->getWins(), vec[i]->getLosses(), vec[i]->getFocus(), vec[i]->getMatchMarker()); 
 		}
 		
-
 
 		/* SAMPLE SAVE
 		// SAVE FUNCTION //.seatID .seatAssign .firstname .lastname
@@ -78,8 +67,13 @@ bool manualSave(vector <Gladiator*> array, League general){
 //information with the data stored in the .dat file
 bool manualLoad() {
 	FILE* fp;
-	char filename[SAVE_NAME_LENGTH];
-	int returnValue = 0, menuChoice;
+	char filename[5][SAVE_NAME_LENGTH] = {"manual_save_1.dat", "manual_save_2.dat", "manual_save_3.dat", "manual_save_4.dat", "manual_save_5.dat"};
+	int returnValue = 0, menuChoice, i = 0;
+	int lTier, lMod, gLeague, gWins, gLosses, gFocus, gMatchmarker;
+	char loadName[MAX_GLAD_NAME_LENGTH];
+	string name;
+	float hp, attack, strength, defence;
+	
 
 	printf("Enter the number of the save slot to load\n");
 	printf("Slot 1\n");
@@ -90,33 +84,37 @@ bool manualLoad() {
 
 	printf("Enter your choice: ");
 	scanf("%d", &menuChoice);
+	menuChoice--;
 
-	switch (menuChoice)
-	{
-	case 1:
-		strcpy(filename, "manual_save_1.dat");
-	case 2:
-		strcpy(filename, "manual_save_2.dat");
-	case 3:
-		strcpy(filename, "manual_save_3.dat");
-	case 4:
-		strcpy(filename, "manual_save_4.dat");
-	case 5:
-		strcpy(filename, "manual_save_5.dat");
-	default:
-		printf("Error: no such save slot %d", menuChoice);
+	if (menuChoice > 4 || menuChoice < 0) {
+		printf("Error: No such save slot %d", menuChoice);
 	}
 	
-	if((fp = fopen(filename, "r+")) != NULL){ //open file that user selected
+	if((fp = fopen(filename[menuChoice], "r+")) != NULL){ //open file that user selected
 		//Loading first line, the league info
-		fscanf(fp, "%d %d", ); // League -> int tier, int modifier
+		fscanf(fp, "%d %d", &lTier, &lMod); // League -> int tier, int modifier
+
+		setLeagueTier(lTier);
+		setLeagueModifier(lMod);
 
 		//after loading the league info, load the gladiator info. One gladiator per line.
-		while (fscanf(fp, "", ) != EOF) { //While the end of file has not been reached, read the following info in the given format
+		//string name floats: hp, attack, strength, defence ints: league, wins, losses, focus, matchmarker
+		while (fscanf(fp, "%s %f %f %f %f %d %d %d %d %d", loadName, hp, attack, strength, defence, &gLeague, &gWins, &gLosses, &gFocus, &gMatchmarker) != EOF) { //While the end of file has not been reached, read the following info in the given format
 			//store the data
+			name = loadName;
+			vec[i]->setName(name); 
+			vec[i]->setHP(hp); 
+			vec[i]->setAttack(attack); 
+			vec[i]->setStrength(strength); 
+			vec[i]->setDefence(defence); 
+			vec[i]->setLeague(gLeague); 
+			vec[i]->setWins(gWins); 
+			vec[i]->setLosses(gLosses); 
+			vec[i]->setFocus(gFocus); 
+			vec[i]->setMatchMarker(gMatchmarker);
 
+			i++;
 		}
-
 
 
 		/*SAMPLE LOAD		 
