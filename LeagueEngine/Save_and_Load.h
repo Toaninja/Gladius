@@ -23,6 +23,6 @@
 #define MAX_GLAD_NAME_LENGTH 30
 
 bool manualSave(vector <Gladiator*> array, League general);
-bool manualLoad();
+bool manualLoad(vector <Gladiator*> array, League general);
  
 // bool autoSave(vector <Gladiator*> array, League general);

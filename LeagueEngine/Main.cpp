@@ -112,6 +112,7 @@ int main(int argc, char* argv[])
 		}
 	}
 
+	manualSave(vec, general);
 
 	vec.clear();												//at season's end, or at promotion/demotion, clear gladiator array 
 																//set new stats after
