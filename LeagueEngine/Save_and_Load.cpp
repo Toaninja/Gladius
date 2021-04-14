@@ -5,6 +5,8 @@
  */
  
 #include "Save_and_Load.h"
+#include "Gladiator.h"
+#include "League.h"
  
 using namespace std;
 

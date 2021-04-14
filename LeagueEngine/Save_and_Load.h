@@ -11,10 +11,8 @@
 #include <string.h> 
 #include <string>
 
-
-//includes for league engine stuff?
-//#include gladiator.h
-//#include league.h
+#include "Gladiator.h"
+#include "League.h"
 
 /*DEPRECATED: This part of the code has been deprecated due to the inability to dynamically 
 			  display file names ending with a given file extension via the "filesystem" header
