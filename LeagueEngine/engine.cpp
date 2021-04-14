@@ -28,19 +28,28 @@ int sign() {
 
 };
 
-Gladiator *combatLoop(Gladiator* g1, Gladiator* g2, float g1Health, float g2Health, float g1Str, float g2Def, float g1Att) {
+Gladiator *combatLoop(Gladiator* g1, Gladiator* g2) {
+
+	float g1Health = g1->getHP();
+	float g2Health = g2->getHP();
+	float g1Str = g1->getStrength();
+	float g2Def = g2->getDefence();
+	float g1Att = g1->getAttack();
 
 	if (g1Health > 0 || g2Health > 0)
 	{
 		if (g1Att * roll(101, 1) > 0.5) {
 
-			float hit = roundf(g1Str);
+			float hit = roundf(g1Str + (sign() * roll() * g1Str * 0.95));
 
-			float block = roundf(g2Def/7);
+			float block = roundf(g2Def*0.3 + (sign() * roll() * g2Def * 0.15));
+
 
 			if (hit < block) {
 				block = hit;
 			}
+
+			hit = hit - block;
 
 			if (hit > g2Health) {
 				hit = g2Health;
@@ -50,7 +59,9 @@ Gladiator *combatLoop(Gladiator* g1, Gladiator* g2, float g1Health, float g2Heal
 
 		
 
-			g2Health = roundf(g2Health - hit + block);
+			g2Health = roundf(g2Health - hit);
+
+			g2->setHP(g2Health);
 
 
 			fstories(g1->getName(), g2Health, hit, block);
@@ -61,7 +72,7 @@ Gladiator *combatLoop(Gladiator* g1, Gladiator* g2, float g1Health, float g2Heal
 
 		};
 
-		combatLoop(g2, g1, g1Health, g2Health, g1Str, g2Def, g1Att);
+		combatLoop(g2, g1);
 
 	}
 
@@ -101,15 +112,16 @@ void engine(vector <Gladiator*> &vec) {
 
 	Gladiator *winner;
 
+	
+	
 	float g1Health = g1->getHP();
 	float g2Health = g2->getHP();
-	float g1Str = g1->getStrength();
-	float g2Def = g2->getDefence();
-	float g1Att = g1->getAttack();
 
 
+	winner = combatLoop(g1, g2);
 
-	winner = combatLoop(g1, g2, g1Health, g2Health, g1Str, g2Def, g1Att);
+	g1->setHP(g1Health);
+	g2->setHP(g2Health);
 
 
 	if (winner->getName() == g1->getName() && winner->getFocus() == g1->getFocus()) {
@@ -117,17 +129,17 @@ void engine(vector <Gladiator*> &vec) {
 		training(g1, g2);
 
 
-		g1->setWins(wins++);
-		g2->setLoss(loss++);
+		g1->setWins(g1->getWins() + 1);
+		g2->setLoss(g2->getLosses() + 1);
 		//g2->setMatchMarker();
 	}
 	else {
 
 		training(g2, g1);
 
-		g2->setWins(wins++);
+		g2->setWins(g2->getWins() + 1);
 		//g1->setMatchMarker();
-		g1->setLoss(loss++);
+		g1->setLoss(g1->getLosses() + 1);
 
 	}
 
