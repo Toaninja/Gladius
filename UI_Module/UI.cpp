@@ -13,25 +13,25 @@ void DisplyNewGame() { system("cls"); NewGame(); }
 
 void trainingFocus(Gladiator* player)
 {
-    int focusInput;
+    char focusInput;
     cout << "\t\tEnter your choice: ";
     cin >> focusInput;
     cout << "\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
     switch (focusInput)
     {
-    case 1: player->setFocus(focusInput); break;
-    case 2: player->setFocus(focusInput); break;
-    case 3: player->setFocus(focusInput); break;
+    case '1': player->setFocus(1); break;
+    case '2': player->setFocus(2); break;
+    case '3': player->setFocus(3); break;
 
     default:
         cout << endl << "Please select a valid option" << endl;
-        DisplayTraining(player);
+        displayTraining(player);
     }
 }
 
-void DisplayTraining(Gladiator* player)
+void displayTraining(Gladiator* player)
 {
-    cout << "\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 TRAINING FOCUS \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
+    cout << "\n\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 TRAINING FOCUS \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
     cout << "\t\t======================================================================" << endl;
     cout << "\t\tPlease select one of the training focus listed below:" << endl;
     cout << "\t\t======================================================================" << endl;
@@ -96,6 +96,14 @@ void selectMenu()
     }
 }
 
+void newgame()
+{
+    Gladiator* player = new gladiator;
+    //getname
+    //focusinput
+    generatePlayer(player, name, focusinput);
+
+}
 // Function to print all the menus
 void printMenu()
 {
