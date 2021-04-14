@@ -112,7 +112,11 @@ int main(int argc, char* argv[])
 		}
 	}
 
-	manualSave(vec, general);
+	int bitthing = manualSave(vec, general); // testing manualSave
+	printf("Bitwise return value: %d \n", bitthing << 1);
+	//cout << vec[1]->getName() << vec[4]->getHP() << vec[9]->getName() << endl;
+	//manualLoad(vec, general);
+	//cout << vec[1]->getName() << vec[4]->getHP() << vec[9]->getName() << endl;
 
 	vec.clear();												//at season's end, or at promotion/demotion, clear gladiator array 
 																//set new stats after

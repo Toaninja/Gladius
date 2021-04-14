@@ -16,8 +16,9 @@ using namespace std;
 bool manualSave(vector <Gladiator*> vec, League general){
 	FILE* fp;
 	char filename[5][SAVE_NAME_LENGTH] = { "manual_save_1.dat", "manual_save_2.dat", "manual_save_3.dat", "manual_save_4.dat", "manual_save_5.dat" };
-	char name[MAX_GLAD_NAME_LENGTH];
-	int returnValue = 0, numOfGladiators = 10, menuChoice;
+	char name[MAX_GLAD_NAME_LENGTH] = "";
+	int numOfGladiators = 10, menuChoice;
+	unsigned char returnValue = 0;
 	string tempName;
 	 
 	printf("Enter the number of the save slot to save to\n");
@@ -65,7 +66,7 @@ bool manualSave(vector <Gladiator*> vec, League general){
 	}
 	 
 	fclose(fp); //close file
-	returnValue; // bitwise value change from 0 to 1
+	returnValue << 1; // bitwise value change from 0 to 1
 	return returnValue; // return 1 for true / successful save
 }
  
@@ -76,8 +77,9 @@ bool manualSave(vector <Gladiator*> vec, League general){
 bool manualLoad(vector <Gladiator*> vec, League general) {
 	FILE* fp;
 	char filename[5][SAVE_NAME_LENGTH] = {"manual_save_1.dat", "manual_save_2.dat", "manual_save_3.dat", "manual_save_4.dat", "manual_save_5.dat"};
-	int returnValue = 0, menuChoice, i = 0;
-	int lTier, lMod, gLeague, gWins, gLosses, gFocus, gMatchmarker;
+	int menuChoice, i = 0;
+	bool returnValue = 0;
+	int lTier, lMod, gLeague = 0, gWins = 0, gLosses = 0, gFocus = 0, gMatchmarker = 0;
 	char loadName[MAX_GLAD_NAME_LENGTH];
 	string name;
 	float hp = 0, attack = 0, strength = 0, defence = 0;
@@ -108,7 +110,7 @@ bool manualLoad(vector <Gladiator*> vec, League general) {
 
 		//after loading the league info, load the gladiator info. One gladiator per line.
 		//string name floats: hp, attack, strength, defence ints: league, wins, losses, focus, matchmarker
-		while (fscanf(fp, "%s %f %f %f %f %d %d %d %d %d", loadName, hp, attack, strength, defence, &gLeague, &gWins, &gLosses, &gFocus, &gMatchmarker) != EOF) { //While the end of file has not been reached, read the following info in the given format
+		while (fscanf(fp, "%s %f %f %f %f %d %d %d %d %d", loadName, &hp, &attack, &strength, &defence, &gLeague, &gWins, &gLosses, &gFocus, &gMatchmarker) != EOF) { //While the end of file has not been reached, read the following info in the given format
 			//store the data
 			name = loadName;
 			vec[i]->setName(name); 
@@ -140,7 +142,7 @@ bool manualLoad(vector <Gladiator*> vec, League general) {
 	}
 	 
 	fclose(fp);//close file
-	returnValue; // bitwise value change
+	returnValue<<1; // bitwise value change
 	return returnValue; // if the file loaded properly return 1 for true
 }
  

@@ -20,7 +20,7 @@
 	#include <Windows.h> // works to find the file date using GetFileTime() on windows machines */
 
 #define SAVE_NAME_LENGTH 18
-#define MAX_GLAD_NAME_LENGTH 30
+#define MAX_GLAD_NAME_LENGTH 16
 
 bool manualSave(vector <Gladiator*> array, League general);
 bool manualLoad(vector <Gladiator*> array, League general);
