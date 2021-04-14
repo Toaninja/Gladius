@@ -80,9 +80,9 @@ Gladiator *combatLoop(Gladiator* g1, Gladiator* g2) {
 
 
 Gladiator* selection(vector <Gladiator*> &vec) {
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 10; i++)
 	{
-		if (vec[i]->getMatchMarker() < 2)
+		if (vec[i]->getMatchMarker() < 2 && vec[i]->getFocus() == 0)					// && getFocus() == 0
 		{
 			vec[i]->setMatchMarker();
 			return vec[i];

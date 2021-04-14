@@ -53,6 +53,7 @@ int main(int argc, char* argv[])
 	bool gameState = true;
 	bool menuState = true;
 
+
 	
 	//string name = "testname";														//testing name and initial focus input
 	//int focusInput = 1; 
@@ -62,14 +63,18 @@ int main(int argc, char* argv[])
 	while (gameState)
 	{
 		menuState = titlePage(player, vec, general, menuState);
+		for (int j = 0; j < 10; j++)
+		{
+			if (vec[j]->getFocus() > 0)
+			{
+				player = vec[j];
+			}
+		}
 
 		while (menuState)
 		{
-			menuState = gameMenu(vec, player, general, menuState);
-
-
 			//checking if player has played full 18 games, promote, demote or stay in current league
-			if (player->getWins() + player->getLosses() == numOfGames)												//if player has played full # of games in season
+			if ((player->getWins() + player->getLosses()) == numOfGames)												//if player has played full # of games in season
 			{
 
 				if (vec[0]->getName() == player->getName() || vec[1]->getName() == player->getName())				//if player is top 2, promote
@@ -110,6 +115,11 @@ int main(int argc, char* argv[])
 				vec.push_back(player);
 			}
 
+
+			menuState = gameMenu(vec, player, general, menuState);
+
+
+			
 														//at season's end, or at promotion/demotion, clear gladiator array 
 																		//set new stats after
 		}

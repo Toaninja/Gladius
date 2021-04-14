@@ -50,6 +50,7 @@ bool manualSave(vector <Gladiator*> vec, League general){
 				name[j] = tempName[j];
 			}
 			fprintf(fp, "%s %f %f %f %f %d %d %d %d %d\n", name, vec[i]->getHP(), vec[i]->getAttack(), vec[i]->getStrength(), vec[i]->getDefence(), vec[i]->getLeague(), vec[i]->getWins(), vec[i]->getLosses(), vec[i]->getFocus(), vec[i]->getMatchMarker()); 
+			tempName = "";
 		}
 		
 

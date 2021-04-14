@@ -183,7 +183,14 @@ bool titlePage(Gladiator* player, vector<Gladiator*> &vec, League general, bool 
             break;*/
 
     case 2:
-        DisplayLoad();
+
+        for (int i = 0; i < 10; i++)
+        {
+            vec.push_back(generateGladiator(i, general));								//assign each gladiator to growing index until 
+        }
+        manualLoad(vec, general);   //load
+       
+
         break;
 
     case 3:
