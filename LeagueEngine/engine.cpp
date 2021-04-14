@@ -40,7 +40,7 @@ Gladiator *combatLoop(Gladiator* g1, Gladiator* g2) {
 	{
 		if (g1Att * roll(101, 1) > 0.5) {
 
-			float hit = roundf(g1Str + (sign() * roll() * g1Str * 0.95));
+			float hit = roundf(1 + g1Str + (sign() * roll() * g1Str * 0.95));
 
 			float block = roundf(g2Def*0.3 + (sign() * roll() * g2Def * 0.15));
 
