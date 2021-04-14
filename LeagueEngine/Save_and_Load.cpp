@@ -18,7 +18,7 @@ bool manualSave(vector <Gladiator*> vec, League general){
 	char filename[5][SAVE_NAME_LENGTH] = { "manual_save_1.dat", "manual_save_2.dat", "manual_save_3.dat", "manual_save_4.dat", "manual_save_5.dat" };
 	char name[MAX_GLAD_NAME_LENGTH] = "";
 	int numOfGladiators = 10, menuChoice;
-	unsigned char returnValue = 0;
+	unsigned char returnValue = 0x1;
 	string tempName;
 	 
 	printf("Enter the number of the save slot to save to\n");
@@ -62,11 +62,11 @@ bool manualSave(vector <Gladiator*> vec, League general){
 				}
 		*/
 	} else {
+		returnValue >>= 1; // bitwise value change from 1 to 0
 		return returnValue; // if fp == NULL -> return 0 for false / unsuccessful save
 	}
 	 
 	fclose(fp); //close file
-	returnValue << 1; // bitwise value change from 0 to 1
 	return returnValue; // return 1 for true / successful save
 }
  
@@ -78,7 +78,7 @@ bool manualLoad(vector <Gladiator*> vec, League general) {
 	FILE* fp;
 	char filename[5][SAVE_NAME_LENGTH] = {"manual_save_1.dat", "manual_save_2.dat", "manual_save_3.dat", "manual_save_4.dat", "manual_save_5.dat"};
 	int menuChoice, i = 0;
-	bool returnValue = 0;
+	unsigned char returnValue = 0x1;
 	int lTier, lMod, gLeague = 0, gWins = 0, gLosses = 0, gFocus = 0, gMatchmarker = 0;
 	char loadName[MAX_GLAD_NAME_LENGTH];
 	string name;
@@ -138,11 +138,11 @@ bool manualLoad(vector <Gladiator*> vec, League general) {
 		}
 		*/
 	} else {
+		returnValue >>= 1; // bitwise value change from 1 to 0
 		return returnValue; // if fp == NULL -> return 0 for false / unsuccessful load
 	}
 	 
 	fclose(fp);//close file
-	returnValue<<1; // bitwise value change
 	return returnValue; // if the file loaded properly return 1 for true
 }
  
