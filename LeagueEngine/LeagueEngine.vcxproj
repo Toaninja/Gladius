@@ -143,6 +143,7 @@
     <ClCompile Include="Gladiator.cpp" />
     <ClCompile Include="League.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Save_and_Load.cpp" />
     <ClCompile Include="stories.cpp" />
     <ClCompile Include="training.cpp" />
   </ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="engine.h" />
     <ClInclude Include="Gladiator.h" />
     <ClInclude Include="League.h" />
+    <ClInclude Include="Save_and_Load.h" />
     <ClInclude Include="stories.h" />
     <ClInclude Include="training.h" />
   </ItemGroup>

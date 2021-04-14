@@ -13,10 +13,12 @@ using namespace std;
 //This function will save the game to a save slot indicated by the user
 //It takes the Gladiator array, as well as the league information and stores them-
 //in a .dat file
-bool manualSave(vector <Gladiator*> array, League general){
+bool manualSave(vector <Gladiator*> vec, League general){
 	FILE* fp;
 	char filename[5][SAVE_NAME_LENGTH] = { "manual_save_1.dat", "manual_save_2.dat", "manual_save_3.dat", "manual_save_4.dat", "manual_save_5.dat" };
+	char name[MAX_GLAD_NAME_LENGTH];
 	int returnValue = 0, numOfGladiators = 10, menuChoice;
+	string tempName;
 	 
 	printf("Enter the number of the save slot to save to\n");
 	printf("Slot 1\n");
@@ -37,12 +39,16 @@ bool manualSave(vector <Gladiator*> array, League general){
 	if((fp = fopen(filename[menuChoice], "w")) != NULL){ //open file with input name
 		// Before all gladiators are saved, save the league info (tier and modifier) at the start of the file.
 		// Saved on the first line
-		fprintf(fp, "%d %d\n", getLeagueTier(), getModifier()); // League -> int tier, int modifier
+		fprintf(fp, "%d %d\n", general.getLeagueTier(), general.getModifier()); // League -> int tier, int modifier
 		
 		for (int i = 0; i < numOfGladiators; i++) { //will print to the named file one line at a time until it has printed a line for every gladiator/etc
 			// saving a single gladiator each loop, incrementing which one with int i
 			//string name ints: hp, attack, strength, defence floats: league, wins, losses, focus, matchmarker
-			fprintf(fp, "%s %f %f %f %f %d %d %d %d %d\n", vec[i]->getName(), vec[i]->getHP(), vec[i]->getAttack(), vec[i]->getStrength(), vec[i]->getDefence(), vec[i]->getLeague(), vec[i]->getWins(), vec[i]->getLosses(), vec[i]->getFocus(), vec[i]->getMatchMarker()); 
+			tempName = vec[i]->getName();
+			for (int j = 0; j < (tempName.length()); j++) {
+				name[j] = tempName[j];
+			}
+			fprintf(fp, "%s %f %f %f %f %d %d %d %d %d\n", name, vec[i]->getHP(), vec[i]->getAttack(), vec[i]->getStrength(), vec[i]->getDefence(), vec[i]->getLeague(), vec[i]->getWins(), vec[i]->getLosses(), vec[i]->getFocus(), vec[i]->getMatchMarker()); 
 		}
 		
 
@@ -67,14 +73,14 @@ bool manualSave(vector <Gladiator*> array, League general){
 //This function will load the game from asave slot indicated by the user
 //It has no inputs, but sets the Gladiator array as well as the league- 
 //information with the data stored in the .dat file
-bool manualLoad() {
+bool manualLoad(vector <Gladiator*> vec, League general) {
 	FILE* fp;
 	char filename[5][SAVE_NAME_LENGTH] = {"manual_save_1.dat", "manual_save_2.dat", "manual_save_3.dat", "manual_save_4.dat", "manual_save_5.dat"};
 	int returnValue = 0, menuChoice, i = 0;
 	int lTier, lMod, gLeague, gWins, gLosses, gFocus, gMatchmarker;
 	char loadName[MAX_GLAD_NAME_LENGTH];
 	string name;
-	float hp, attack, strength, defence;
+	float hp = 0, attack = 0, strength = 0, defence = 0;
 	
 
 	printf("Enter the number of the save slot to load\n");
@@ -96,8 +102,9 @@ bool manualLoad() {
 		//Loading first line, the league info
 		fscanf(fp, "%d %d", &lTier, &lMod); // League -> int tier, int modifier
 
-		setLeagueTier(lTier);
-		setLeagueModifier(lMod);
+		League *general = new League;
+		general->setLeagueTier(lTier);
+		general->setModifier(lMod);
 
 		//after loading the league info, load the gladiator info. One gladiator per line.
 		//string name floats: hp, attack, strength, defence ints: league, wins, losses, focus, matchmarker
@@ -109,12 +116,13 @@ bool manualLoad() {
 			vec[i]->setAttack(attack); 
 			vec[i]->setStrength(strength); 
 			vec[i]->setDefence(defence); 
-			vec[i]->setLeague(gLeague); 
+			//vec[i]->setLeague(gLeague); 
 			vec[i]->setWins(gWins); 
-			vec[i]->setLosses(gLosses); 
+			vec[i]->setLoss(gLosses); 
 			vec[i]->setFocus(gFocus); 
-			vec[i]->setMatchMarker(gMatchmarker);
-
+			for (int j = 0; j < gMatchmarker; j++) {
+				vec[i]->setMatchMarker();
+			}
 			i++;
 		}
 
