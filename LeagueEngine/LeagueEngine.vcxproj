@@ -139,7 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\UI_Module\UI.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="Gladiator.cpp" />
     <ClCompile Include="League.cpp" />
@@ -147,15 +146,16 @@
     <ClCompile Include="Save_and_Load.cpp" />
     <ClCompile Include="stories.cpp" />
     <ClCompile Include="training.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\UI_Module\UI.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="Gladiator.h" />
     <ClInclude Include="League.h" />
     <ClInclude Include="Save_and_Load.h" />
     <ClInclude Include="stories.h" />
     <ClInclude Include="training.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

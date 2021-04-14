@@ -1,4 +1,11 @@
+#include <vector>
+
 #include"UI.h"
+#include "Gladiator.h"
+#include "engine.h"
+#include "Save_and_Load.h"
+#include "League.h"
+
 
 
 ///////////////////////PSEUDO CODE///////////////
@@ -56,7 +63,7 @@ void DisplayStandings_UI(vector <Gladiator*> vec)
     cout << "\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl;
 }
 
-void newgame_UI(Gladiator* player)
+void newgame_UI(Gladiator* player, vector<Gladiator*>&vec, League general)
 {
     string name;
     int focusInput;
@@ -74,51 +81,57 @@ void newgame_UI(Gladiator* player)
 
     //getname
     //focusinput
-    generatePlayer(player, name, focusinput);
+    generatePlayer(player, name, focusInput);
+
+    for (int i = 0; i < 9; i++)
+    {
+        vec.push_back(generateGladiator(i, general));								//assign each gladiator to growing index until 
+    }
+    vec.push_back(player);															//add player to gladiator array
 
 }
 
 // Function to take user choices and perform
 // the appropriate operation
-void selectMenu_UI()
-{
-    int choice;
-    cout << endl << "Enter your choice : ";
-    scanf_s("%d", &choice);
-
-    switch (choice) 
-    {
-    case 1:
-        newgame_UI(Gladiator * player);
-        break;
-
-
-    case 2:
-        DisplayTraining_UI(player);
-        break;
-
-    case 3:
-        DisplayStandings_UI();
-        break;
-
-    case 4:
-        DisplayLoad();
-        break;
-        
-    case 5:
-        cout << endl << "Exiting... " << endl << endl;
-        cout << "Exiting in 3 seconds..." << endl;
-        Sleep(3000);
-        exit(1);
-
-    default:
-        cout << endl << "The choice you entered was invalid. Please try again :) " << endl;
-        printMenu_UI();
-    }
-}
+//void titlePageInput(Gladiator* player, vector<Gladiator*>vec, League general, bool menuState)
+//{
+//    int choice;
+//    cout << endl << "Enter your choice : ";
+//    scanf_s("%d", &choice);
+//
+//    switch (choice) 
+//    {
+//    case 1:
+//        newgame_UI(player, vec, general);
+//        break;
+//
+//
+//    /*case 2:
+//        DisplayTraining_UI(player);
+//        break;
+//
+//    case 3:
+//        DisplayStandings_UI();
+//        break;*/
+//
+//    case 2:
+//        DisplayLoad();
+//        break;
+//        
+//    case 3:
+//        cout << endl << "Exiting... " << endl << endl;
+//        cout << "Exiting in 3 seconds..." << endl;
+//        Sleep(3000);
+//        exit(1);
+//
+//    default:
+//        cout << endl << "The choice you entered was invalid. Please try again :) " << endl;
+//        titlePage(menuState);
+//    }
+//}
 
 // Function to print all the menus
-void printMenu_UI()
+bool titlePage(Gladiator* player, vector<Gladiator*> &vec, League general, bool menuState)
 {
     // Set output color to blue
     // background and white foreground
@@ -137,10 +150,10 @@ void printMenu_UI()
     cout << endl << "|\t\t\t\t\t\t\t\t|";
     cout << endl << "|\t\t\t\t\t\t\t\t|";
     cout << endl << "|\t\t\t 1. New Game \t\t\t\t|";
-    cout << endl << "|\t\t\t 2. Training focus \t\t\t|";
-    cout << endl << "|\t\t\t 3. View Standings \t\t\t|";
-    cout << endl << "|\t\t\t 4. Load Game \t\t\t\t|";
-    cout << endl << "|\t\t\t 5. Exit \t\t\t\t|";
+   // cout << endl << "|\t\t\t 2. Training focus \t\t\t|";
+   // cout << endl << "|\t\t\t 3. View Standings \t\t\t|";
+    cout << endl << "|\t\t\t 2. Load Game \t\t\t\t|";
+    cout << endl << "|\t\t\t 3. Exit \t\t\t\t|";
     cout << endl << "|\t\t\t\t\t\t\t\t|";
     cout << endl << "|\t\t\t\t\t\t\t\t|";
     cout << endl << "|\t\t\t\t\t\t\t\t|";
@@ -148,15 +161,119 @@ void printMenu_UI()
     cout << endl << "\xB2_________________________________"
          << "______________________________\xB2" << endl;
 
-    // Function call for select options
-    selectMenu_UI();
+    menuState = true;
+
+    int choice;
+    cout << endl << "Enter your choice : ";
+    scanf_s("%d", &choice);
+
+    switch (choice)
+    {
+    case 1:
+        newgame_UI(player, vec, general);
+        break;
+
+
+        /*case 2:
+            DisplayTraining_UI(player);
+            break;
+
+        case 3:
+            DisplayStandings_UI();
+            break;*/
+
+    case 2:
+        DisplayLoad();
+        break;
+
+    case 3:
+        cout << endl << "Exiting... " << endl << endl;
+        cout << "Exiting in 3 seconds..." << endl;
+        Sleep(3000);
+        exit(1);
+
+    default:
+        cout << endl << "The choice you entered was invalid. Please try again :) " << endl;
+        titlePage(player, vec, general, menuState);
+    }
+
+    return menuState;
 }
 
 
 // Driver Code
-int main()
+//int main()
+//{
+//    // Function Call
+//    titlePage();
+//    return 0;
+//}
+
+//choose focus
+//fight
+//save
+
+bool gameMenu(vector <Gladiator*> &vec, Gladiator *player, League general, bool menuState)
 {
-    // Function Call
-    printMenu_UI();
-    return 0;
+    int input;
+
+    cout << "1. Fight" << endl;
+
+    cout << "2. Choose training focus" << endl;
+    cout << "3. View standings" << endl;
+    cout << "4. Save" << endl;
+    cout << "5. Load" << endl;
+    cout << "6. Exit to title screen" << endl;
+    cout << "7. Exit to desktop" << endl;
+    cout << "Please select an option from 1-7: ";
+
+    cin >> input;
+
+
+    switch (input)
+    {
+
+    case 1:                         //fight for that day
+        engine(vec);
+        sort(vec.begin(), vec.end(), cmp);
+        break;
+
+       
+    case 2:                         //change training focus for that day
+        trainingFocus_UI(player);
+        break;
+
+    case 3:                         //view standings
+        DisplayStandings_UI(vec);
+        break;
+
+    case 4:
+        manualSave(vec, general);   //save
+        break;
+
+    case 5:
+        manualLoad(vec, general);   //load
+        break;
+
+    case 6:                         //exit to title screen
+        menuState = false;
+        vec.clear();
+        player->setWins(0);
+        player->setLoss(0);
+        return menuState;
+        
+
+    case 7:
+        cout << endl << "Exiting... " << endl << endl;
+        cout << "Exiting in 3 seconds..." << endl;
+        Sleep(3000);
+        exit(1);
+
+    default:
+        cout << "Invalid input" << endl;
+        gameMenu(vec, player, general, menuState);
+
+    }
+
+    return menuState;
 }

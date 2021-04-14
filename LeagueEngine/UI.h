@@ -7,6 +7,9 @@
 #include <stdlib.h>
 #include <windows.h>
 
+#include "Gladiator.h"
+
+
 #define UNDERLINE "\033[4m"
 #define CLOSEUNDERLINE "\033[0m"
 
@@ -30,12 +33,13 @@
 
 using namespace std;
 
-void printMenu_UI();
+bool titlePage(Gladiator* player, vector<Gladiator*> &vec, League general, bool menuState);
 void trainingFocus_UI(Gladiator* player);
-void displayTraining_UI(Gladiator* player)
-void DisplayStandings_UI(vector <Gladiator*> vec)
-void selectMenu_UI()
-void newgame_UI(Gladiator* player)
+void displayTraining_UI(Gladiator* player);
+void DisplayStandings_UI(vector <Gladiator*> vec);
+//void titlePageInput(Gladiator* player, vector<Gladiator*>vec, League general, bool menuState);
+void newgame_UI(Gladiator* player, vector <Gladiator*> &vec, League general);
+bool gameMenu(vector <Gladiator*> &vec, Gladiator* player, League general, bool menuState);
 
 
 #endif // !UI

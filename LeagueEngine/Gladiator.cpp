@@ -160,16 +160,21 @@ void generatePlayer(Gladiator* player, string name, int focusInput)					//genera
 
 	if (focusInput == 1)
 	{
+		player->setFocus(1);
 		attack = attack * CREATE_FOCUS;
 	}
 
 	else if (focusInput == 2)
 	{
+		player->setFocus(2);
+
 		strength = strength * CREATE_FOCUS;
 	}
 
 	else if (focusInput == 3)
 	{
+		player->setFocus(3);
+
 		defence = defence * CREATE_FOCUS;
 	}
 
