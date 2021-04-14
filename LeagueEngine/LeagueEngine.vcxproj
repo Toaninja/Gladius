@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\UI_Module\UI.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="Gladiator.cpp" />
     <ClCompile Include="League.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="training.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\UI_Module\UI.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="Gladiator.h" />
     <ClInclude Include="League.h" />
