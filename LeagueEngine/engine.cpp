@@ -83,12 +83,13 @@ Gladiator* selection(vector <Gladiator*> &vec) {
 	for (int i = 0; i < 10; i++)
 	{
 		if (vec[i]->getMatchMarker() < 2 && vec[i]->getFocus() == 0)					// && getFocus() == 0
-		{
+		
 			vec[i]->setMatchMarker();
 			return vec[i];
 		}
+
 	}
-}
+
 
 
 
@@ -126,7 +127,8 @@ void engine(vector <Gladiator*> &vec) {
 
 	if (winner->getName() == g1->getName() && winner->getFocus() == g1->getFocus()) {
 
-		training(g1, g2);
+		training(g1, 1);
+		training(g2, 0);
 
 
 		g1->setWins(g1->getWins() + 1);
@@ -135,7 +137,8 @@ void engine(vector <Gladiator*> &vec) {
 	}
 	else {
 
-		training(g2, g1);
+		training(g2, 0);
+		training(g1, 1);
 
 		g2->setWins(g2->getWins() + 1);
 		//g1->setMatchMarker();
@@ -143,6 +146,29 @@ void engine(vector <Gladiator*> &vec) {
 
 	}
 
+
+	int counter = 1;
+	for (int i = 0; i < vec.size(); i++)
+	{
 	
+		if (vec[i]->getName() != g1->getName() && vec[i]->getName() != g2->getName())
+		{
+			if (counter % 2 == 1)
+			{
+				vec[i]->setWins(vec[i]->getWins() + 1);
+				counter++;
+				training(vec[i], 0);
+			}
+			else
+			{
+				vec[i]->setLoss(vec[i]->getLosses() + 1);
+				counter++;
+				training(vec[i], 0);
+			}
+		}
+
+
+
+	}
 
 };

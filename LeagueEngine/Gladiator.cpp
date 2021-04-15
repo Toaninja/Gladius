@@ -197,9 +197,9 @@ Gladiator* generateGladiator(int i, League general)									//create random glad
 	temp->setName(name);
 
 	int HP = ((rand() % (10 - 7 + 1)) + 7) + modifier;			//7-10 HP
-	float attack = ((rand() % (5 - 1 + 1)) + 1) + modifier;		//1-5 combat stats
-	float strength = (rand() % (5 - 1 + 1)) + 1 + modifier;
-	float defence = (rand() % (5 - 1 + 1)) + 1 + modifier;
+	float attack = ((rand() % (5 - 1 + 1)) + 3) + modifier;		//1-5 combat stats
+	float strength = (rand() % (5 - 1 + 1)) + 4 + modifier;
+	float defence = (rand() % (5 - 1 + 1)) + 3 + modifier;
 
 	temp->setAttributes(HP, attack, strength, defence);
 
