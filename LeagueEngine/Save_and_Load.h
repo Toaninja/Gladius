@@ -5,11 +5,16 @@
  */
 #pragma warning(disable:4996)
 
-#include <stdlib.h> 
-#include <vector>
-#include <stdio.h> 
-#include <string.h> 
+
+#include <iostream>
+#include <fstream>
 #include <string>
+#include <vector>
+
+//#include <stdlib.h> 
+//#include <stdio.h> 
+//#include <string.h> 
+
 
 #include "Gladiator.h"
 #include "League.h"

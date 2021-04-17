@@ -21,15 +21,15 @@ bool manualSave(vector <Gladiator*> vec, League general){
 	unsigned char returnValue = 0x1;
 	string tempName;
 	 
-	printf("Enter the number of the save slot to save to\n");
-	printf("Slot 1\n");
-	printf("Slot 2\n");
-	printf("Slot 3\n");
-	printf("Slot 4\n");
-	printf("Slot 5\n");
+	cout << "Enter the number of the save slot to save to" << endl;
+	cout << "Slot 1" << endl;
+	cout << "Slot 2" << endl;
+	cout << "Slot 3" << endl;
+	cout << "Slot 4" << endl;
+	cout << "Slot 5" << endl;
 
-	printf("Enter your choice: ");
-	scanf("%d", &menuChoice);
+	cout << "Enter your choice: " << endl;
+	cin >> menuChoice;
 	menuChoice--;
 
 	if (menuChoice > 4 || menuChoice < 0) {
@@ -76,74 +76,65 @@ bool manualSave(vector <Gladiator*> vec, League general){
 //It has no inputs, but sets the Gladiator array as well as the league- 
 //information with the data stored in the .dat file
 bool manualLoad(vector <Gladiator*> vec, League general) {
-	FILE* fp;
-	char filename[5][SAVE_NAME_LENGTH] = {"manual_save_1.dat", "manual_save_2.dat", "manual_save_3.dat", "manual_save_4.dat", "manual_save_5.dat"};
-	int menuChoice, i = 0;
+	ifstream fin;
+	string filename[5] = {"manual_save_1.dat", "manual_save_2.dat", "manual_save_3.dat", "manual_save_4.dat", "manual_save_5.dat"}, name;
 	unsigned char returnValue = 0x1;
-	int lTier, lMod, gLeague = 0, gWins = 0, gLosses = 0, gFocus = 0, gMatchmarker = 0;
-	char loadName[MAX_GLAD_NAME_LENGTH];
-	string name;
-	float hp = 0, attack = 0, strength = 0, defence = 0;
+	int lTier, lMod, gLeague, gWins, gLosses, gFocus, gMatchmarker, numOfGladiators = 10, menuChoice;
+	float hp, attack, strength, defence;
 	
 
-	printf("Enter the number of the save slot to load\n");
-	printf("Slot 1\n");
-	printf("Slot 2\n");
-	printf("Slot 3\n");
-	printf("Slot 4\n");
-	printf("Slot 5\n");
+	cout << "Enter the number of the save slot to load" << endl;
+	cout << "Slot 1" << endl;
+	cout << "Slot 2" << endl;
+	cout << "Slot 3" << endl;
+	cout << "Slot 4" << endl;
+	cout << "Slot 5" << endl;
 
-	printf("Enter your choice: ");
-	scanf("%d", &menuChoice);
+	cout << "Enter your choice: " << endl;
+	cin >> menuChoice;
 	menuChoice--;
 
 	if (menuChoice > 4 || menuChoice < 0) {
 		printf("Error: No such save slot %d", menuChoice);
 	}
 	
-	if((fp = fopen(filename[menuChoice], "r+")) != NULL){ //open file that user selected
+	fin.open(filename[menuChoice]);
+	if (fin.is_open()) {
 		//Loading first line, the league info
-		fscanf(fp, "%d %d", &lTier, &lMod); // League -> int tier, int modifier
-
-		League *general = new League;
+		fin >> lTier >> lMod; // League -> int tier, int modifier
+		
+		League* general = new League;
 		general->setLeagueTier(lTier);
 		general->setModifier(lMod);
-
+		
 		//after loading the league info, load the gladiator info. One gladiator per line.
-		//string name floats: hp, attack, strength, defence ints: league, wins, losses, focus, matchmarker
-		while (fscanf(fp, "%s %f %f %f %f %d %d %d %d %d", loadName, &hp, &attack, &strength, &defence, &gLeague, &gWins, &gLosses, &gFocus, &gMatchmarker) != EOF) { //While the end of file has not been reached, read the following info in the given format
+		//string: name 
+		//floats: hp, attack, strength, defence 
+		//ints: league, wins, losses, focus, matchmarker
+		for (int i = 0; i < numOfGladiators; i++) {
+			fin >> name >> hp >> attack >> strength >> defence >> gLeague >> gWins >> gLosses >> gFocus >> gMatchmarker;
+
 			//store the data
-			name = loadName;
-			vec[i]->setName(name); 
-			vec[i]->setHP(hp); 
-			vec[i]->setAttack(attack); 
-			vec[i]->setStrength(strength); 
-			vec[i]->setDefence(defence); 
+			vec[i]->setName(name);
+			vec[i]->setHP(hp);
+			vec[i]->setAttack(attack);
+			vec[i]->setStrength(strength);
+			vec[i]->setDefence(defence);
 			//vec[i]->setLeague(gLeague); 
-			vec[i]->setWins(gWins); 
-			vec[i]->setLoss(gLosses); 
-			vec[i]->setFocus(gFocus); 
+			vec[i]->setWins(gWins);
+			vec[i]->setLoss(gLosses);
+			vec[i]->setFocus(gFocus);
 			for (int j = 0; j < gMatchmarker; j++) {
 				vec[i]->setMatchMarker();
 			}
-			i++;
 		}
-
-
-		/*SAMPLE LOAD		 
-		while (fscanf(fp, "%d %d %s %s", &storeID, &storeBool, FlightList[flightID].Plane[i].firstName, FlightList[flightID].Plane[i].lastName) != EOF) {
-			FlightList[flightID].Plane[i].seatID = storeID;
-			FlightList[flightID].Plane[i].seatAssign = storeBool;
-
-			i++;
-		}
-		*/
 	} else {
+		//unable to open file
 		returnValue >>= 1; // bitwise value change from 1 to 0
 		return returnValue; // if fp == NULL -> return 0 for false / unsuccessful load
 	}
 	 
-	fclose(fp);//close file
+	fin.close(); //close file
 	return returnValue; // if the file loaded properly return 1 for true
 }
  
