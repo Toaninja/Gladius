@@ -16,7 +16,7 @@ using namespace std;
 bool manualSave(vector <Gladiator*> vec, League general){
 	FILE* fp;
 	char filename[5][SAVE_NAME_LENGTH] = { "manual_save_1.dat", "manual_save_2.dat", "manual_save_3.dat", "manual_save_4.dat", "manual_save_5.dat" };
-	char name[MAX_GLAD_NAME_LENGTH] = "";
+	char name[MAX_GLAD_NAME_LENGTH] = "", emptyString[MAX_GLAD_NAME_LENGTH] = "               ";
 	int numOfGladiators = 10, menuChoice;
 	unsigned char returnValue = 0x1;
 	string tempName;
@@ -46,6 +46,7 @@ bool manualSave(vector <Gladiator*> vec, League general){
 			// saving a single gladiator each loop, incrementing which one with int i
 			//string name ints: hp, attack, strength, defence floats: league, wins, losses, focus, matchmarker
 			tempName = vec[i]->getName();
+			strcpy(name, emptyString);
 			for (int j = 0; j < (tempName.length()); j++) {
 				name[j] = tempName[j];
 			}
