@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 	//cout << player->getAttack() << endl;
 	while (gameState)
 	{
-		menuState = titlePage(player, vec, general, menuState);
+		menuState = titlePage(player, vec, &general, menuState);
 		for (int j = 0; j < 10; j++)
 		{
 			if (vec[j]->getFocus() > 0)
@@ -77,29 +77,39 @@ int main(int argc, char* argv[])
 			if ((player->getWins() + player->getLosses()) == numOfGames)												//if player has played full # of games in season
 			{
 
+				cout << endl << "\t\tLEAGUE CHANGES" << endl;
+				cout << "\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2" << endl << endl;
+
 				if (vec[0]->getName() == player->getName() || vec[1]->getName() == player->getName())				//if player is top 2, promote
 				{
 					//player->promote();
 					general = leagueArray[general.getLeagueTier()];
-
+					
 
 					if (player->getLeague() > 5)
 					{
-						//message for winning game
-						//exit
+						cout << "Congratulation! You made it to the top!" << endl;
+						cout << "What now..." << endl;
+						exit(1);
+					}
+					else {
+						cout << "You have promoted to the next league. Well done!" << endl; 
 					}
 				}
 				else if (vec[8]->getName() == player->getName() || vec[9]->getName() == player->getName())			//if player is bottom 2, demote
 				{
 					general = leagueArray[general.getLeagueTier() - 2];
-					if (player->getLeague() < 5)
+					if (player->getLeague() == 1)
 					{
-						//message to say can't demote any further
+						cout << "Cannot demote any further..." << endl; 
+					}
+					else {
+						cout << "You have demoted to a previous league..." << endl;
 					}
 				}
 				else
 				{
-					//no promotion or demotion, continue to next season in same league 
+					cout << "The league begins anew..." << endl;;
 				}
 
 				player->setWins(0);
@@ -110,13 +120,13 @@ int main(int argc, char* argv[])
 				//promote
 				for (int i = 0; i < 9; i++)
 				{
-					vec.push_back(generateGladiator(i, general));								//assign each gladiator to growing index until 
+					vec.push_back(generateGladiator(i, &general));								//assign each gladiator to growing index until 
 				}
 				vec.push_back(player);
 			}
 
 
-			menuState = gameMenu(vec, player, general, menuState);
+			menuState = gameMenu(vec, player, &general, menuState);
 
 
 			

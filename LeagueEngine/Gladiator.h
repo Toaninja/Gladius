@@ -65,6 +65,6 @@ public:
 };
 
 void generatePlayer(Gladiator* player, string name, int focusInput);
-Gladiator* generateGladiator(int i, League general);
+Gladiator* generateGladiator(int i, League *general);
 void trainingFocus(Gladiator* player, int focusInput);
 bool cmp(Gladiator* one, Gladiator* two);

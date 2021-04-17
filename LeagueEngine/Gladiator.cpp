@@ -188,10 +188,10 @@ void generatePlayer(Gladiator* player, string name, int focusInput)					//genera
 }
 
 
-Gladiator* generateGladiator(int i, League general)									//create random gladiators, called in vector array loop
+Gladiator* generateGladiator(int i, League *general)									//create random gladiators, called in vector array loop
 {
 	Gladiator* temp = new Gladiator;												//temp which will be returned and assigned to an index
-	int modifier = general.getModifier();
+	int modifier = general->getModifier();
 
 	string name = "Gladiator" + to_string(i + 1);									//gladiator name ie index 3, Gladiator name = "Gladiator4"
 	temp->setName(name);
