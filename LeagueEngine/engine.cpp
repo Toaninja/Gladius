@@ -79,18 +79,17 @@ Gladiator *combatLoop(Gladiator* g1, Gladiator* g2) {
 };
 
 
-Gladiator* selection(vector <Gladiator*> &vec) {
+Gladiator* selection(vector <Gladiator*>& vec) {
 	for (int i = 0; i < 10; i++)
 	{
-		if (vec[i]->getMatchMarker() < 2 && vec[i]->getFocus() == 0)					// && getFocus() == 0
-		
+		if (vec[i]->getMatchMarker() < 2) {					// && getFocus() == 0
+
 			vec[i]->setMatchMarker();
 			return vec[i];
 		}
 
 	}
-
-
+}
 
 
 void engine(vector <Gladiator*> &vec) {
@@ -114,15 +113,16 @@ void engine(vector <Gladiator*> &vec) {
 	Gladiator *winner;
 
 	
-	
-	float g1Health = g1->getHP();
-	float g2Health = g2->getHP();
+	float g1Health = 0;
+	memcpy(&g1Health, g1->HP, sizeof(float));
 
+	float g2Health = 0;
+	memcpy(&g2Health, g2->HP, sizeof(float));
 
 	winner = combatLoop(g1, g2);
 
-	g1->setHP(g1Health);
-	g2->setHP(g2Health);
+	memcpy(g1->HP, &g1Health, sizeof(float));
+	memcpy(g2->HP, &g2Health, sizeof(float));
 
 
 	if (winner->getName() == g1->getName() && winner->getFocus() == g1->getFocus()) {
@@ -133,42 +133,68 @@ void engine(vector <Gladiator*> &vec) {
 
 		g1->setWins(g1->getWins() + 1);
 		g2->setLoss(g2->getLosses() + 1);
-		//g2->setMatchMarker();
+
 	}
 	else {
 
 		training(g2, 0);
 		training(g1, 1);
 
+
 		g2->setWins(g2->getWins() + 1);
-		//g1->setMatchMarker();
 		g1->setLoss(g1->getLosses() + 1);
 
 	}
 
 
-	int counter = 1;
-	for (int i = 0; i < vec.size(); i++)
+	int counter;
+
+	if ((rand() % 2) == 1) 
 	{
-	
-		if (vec[i]->getName() != g1->getName() && vec[i]->getName() != g2->getName())
+	counter = 1;
+		for (int i = 0; i < vec.size(); i++)
 		{
-			if (counter % 2 == 1)
+
+			if (vec[i]->getName() != g1->getName() && vec[i]->getName() != g2->getName())
 			{
-				vec[i]->setWins(vec[i]->getWins() + 1);
-				counter++;
-				training(vec[i], 0);
-			}
-			else
-			{
-				vec[i]->setLoss(vec[i]->getLosses() + 1);
-				counter++;
-				training(vec[i], 0);
+				if (counter % 2 == 1)
+				{
+					vec[i]->setWins(vec[i]->getWins() + 1);
+					counter++;
+					training(vec[i], 0);
+				}
+				else
+				{
+					vec[i]->setLoss(vec[i]->getLosses() + 1);
+					counter++;
+					training(vec[i], 0);
+				}
 			}
 		}
+	}
 
+	else 
+	{
+		counter = 0;
+		for (int i = 0; i < vec.size(); i++)
+		{
 
-
+			if (vec[i]->getName() != g1->getName() && vec[i]->getName() != g2->getName())
+			{
+				if (counter % 2 == 1)
+				{
+					vec[i]->setWins(vec[i]->getWins() + 1);
+					counter++;
+					training(vec[i], 0);
+				}
+				else
+				{
+					vec[i]->setLoss(vec[i]->getLosses() + 1);
+					counter++;
+					training(vec[i], 0);
+				}
+			}
+		}
 	}
 
 };

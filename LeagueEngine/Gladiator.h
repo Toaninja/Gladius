@@ -61,6 +61,7 @@ public:
 
 	friend Gladiator combatLoop(Gladiator g1, Gladiator g2);
 	friend void training(Gladiator winner, Gladiator loser);
+	friend void engine(vector <Gladiator*>& vec);
 };
 
 void generatePlayer(Gladiator* player, string name, int focusInput);
