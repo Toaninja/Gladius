@@ -158,6 +158,7 @@ case 2:
         vec.push_back(generateGladiator(i, general));								//assign each gladiator to growing index until 
     }
     if (manualLoad(player, vec, general) == false) {   //load
+        vec.clear();
         titlePage(player, vec, general, true);
     }
     break;
