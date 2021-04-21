@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
 					general = leagueArray[general.getLeagueTier()];
 					
 
-					if (player->getLeague() > 5)
+					if (general.getLeagueTier() > 5)
 					{
 						cout << "Congratulation! You made it to the top!" << endl;
 						cout << "What now..." << endl;
@@ -98,12 +98,13 @@ int main(int argc, char* argv[])
 				}
 				else if (vec[8]->getName() == player->getName() || vec[9]->getName() == player->getName())			//if player is bottom 2, demote
 				{
-					general = leagueArray[general.getLeagueTier() - 2];
-					if (player->getLeague() == 1)
+					
+					if (general.getLeagueTier() == 1)
 					{
 						cout << "Cannot demote any further..." << endl; 
 					}
 					else {
+						general = leagueArray[general.getLeagueTier() - 2];
 						cout << "You have demoted to a previous league..." << endl;
 					}
 				}
