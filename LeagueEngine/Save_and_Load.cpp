@@ -7,13 +7,14 @@
 #include "Save_and_Load.h"
 #include "Gladiator.h"
 #include "League.h"
+#include "UI.h"
  
 using namespace std;
 
 //This function will save the game to a save slot indicated by the user
 //It takes the Gladiator array, as well as the league information and stores them-
 //in a .dat file
-bool manualSave(vector <Gladiator*> vec, League general){
+bool manualSave(vector <Gladiator*> vec, League *general){
 	FILE* fp;
 	char filename[5][SAVE_NAME_LENGTH] = { "manual_save_1.dat", "manual_save_2.dat", "manual_save_3.dat", "manual_save_4.dat", "manual_save_5.dat" };
 	char name[MAX_GLAD_NAME_LENGTH] = "", emptyString[MAX_GLAD_NAME_LENGTH] = "               ";
@@ -21,7 +22,7 @@ bool manualSave(vector <Gladiator*> vec, League general){
 	unsigned char returnValue = 0x1;
 	string tempName;
 	 
-	printf("Enter the number of the save slot to save to\n");
+	printf("\nEnter the number of the save slot to save to\n");
 	printf("Slot 1\n");
 	printf("Slot 2\n");
 	printf("Slot 3\n");
@@ -33,20 +34,21 @@ bool manualSave(vector <Gladiator*> vec, League general){
 	menuChoice--;
 
 	if (menuChoice > 4 || menuChoice < 0) {
-		printf("Error: No such save slot %d", menuChoice);
+		printf("\nError: No such save slot %d\n", menuChoice);
+		manualSave(vec, general);
 	}
 	
 	
 	if((fp = fopen(filename[menuChoice], "w")) != NULL){ //open file with input name
 		// Before all gladiators are saved, save the league info (tier and modifier) at the start of the file.
 		// Saved on the first line
-		fprintf(fp, "%d %d\n", general.getLeagueTier(), general.getModifier()); // League -> int tier, int modifier
+		fprintf(fp, "%d %d\n", general->getLeagueTier(), general->getModifier()); // League -> int tier, int modifier
 		
 		for (int i = 0; i < numOfGladiators; i++) { //will print to the named file one line at a time until it has printed a line for every gladiator/etc
 			// saving a single gladiator each loop, incrementing which one with int i
 			//string name ints: hp, attack, strength, defence floats: league, wins, losses, focus, matchmarker
 			tempName = vec[i]->getName();
-			strcpy(name, emptyString);
+			memcpy(name, emptyString, MAX_GLAD_NAME_LENGTH-1);
 			for (int j = 0; j < (tempName.length()); j++) {
 				name[j] = tempName[j];
 			}
@@ -54,15 +56,6 @@ bool manualSave(vector <Gladiator*> vec, League general){
 			tempName = "";
 		}
 		
-
-		/* SAMPLE SAVE
-		// SAVE FUNCTION //.seatID .seatAssign .firstname .lastname
-				if ((freopen(flightData, "w", fp)) != NULL) {
-					for (int j = 0; j < PLANE_SIZE; j++) {
-						fprintf(fp, "%d %d %s %s\n", List[flightID].Plane[j].seatID, List[flightID].Plane[j].seatAssign, List[flightID].Plane[j].firstName, List[flightID].Plane[j].lastName);
-					}
-				}
-		*/
 	} else {
 		returnValue >>= 1; // bitwise value change from 1 to 0
 		return returnValue; // if fp == NULL -> return 0 for false / unsuccessful save
@@ -73,10 +66,10 @@ bool manualSave(vector <Gladiator*> vec, League general){
 }
  
  
-//This function will load the game from asave slot indicated by the user
+//This function will load the game from a save slot indicated by the user
 //It has no inputs, but sets the Gladiator array as well as the league- 
 //information with the data stored in the .dat file
-bool manualLoad(vector <Gladiator*> vec, League general) {
+bool manualLoad(Gladiator* player, vector <Gladiator*> vec, League *general) {
 	FILE* fp;
 	char filename[5][SAVE_NAME_LENGTH] = {"manual_save_1.dat", "manual_save_2.dat", "manual_save_3.dat", "manual_save_4.dat", "manual_save_5.dat"};
 	int menuChoice, i = 0;
@@ -87,26 +80,30 @@ bool manualLoad(vector <Gladiator*> vec, League general) {
 	float hp = 0, attack = 0, strength = 0, defence = 0;
 	
 
-	printf("Enter the number of the save slot to load\n");
-	printf("Slot 1\n");
-	printf("Slot 2\n");
-	printf("Slot 3\n");
-	printf("Slot 4\n");
-	printf("Slot 5\n");
+	printf("\nEnter the number of the save slot to load\n");
+	printf("1. Slot 1\n");
+	printf("2. Slot 2\n");
+	printf("3. Slot 3\n");
+	printf("4. Slot 4\n");
+	printf("5. Slot 5\n");
+	printf("6. Exit\n");
 
 	printf("Enter your choice: ");
 	scanf("%d", &menuChoice);
 	menuChoice--;
 
-	if (menuChoice > 4 || menuChoice < 0) {
-		printf("Error: No such save slot %d", menuChoice);
+	if (menuChoice > 5 || menuChoice < 0) {
+		printf("\nError: No such save slot %d\n", menuChoice);
+		manualLoad(player, vec, general);
+	}
+	else if (menuChoice == 5) {
+		titlePage(player, vec, general, true);
 	}
 	
 	if((fp = fopen(filename[menuChoice], "r+")) != NULL){ //open file that user selected
 		//Loading first line, the league info
 		fscanf(fp, "%d %d", &lTier, &lMod); // League -> int tier, int modifier
 
-		League *general = new League;
 		general->setLeagueTier(lTier);
 		general->setModifier(lMod);
 
@@ -130,16 +127,8 @@ bool manualLoad(vector <Gladiator*> vec, League general) {
 			i++;
 		}
 
-
-		/*SAMPLE LOAD		 
-		while (fscanf(fp, "%d %d %s %s", &storeID, &storeBool, FlightList[flightID].Plane[i].firstName, FlightList[flightID].Plane[i].lastName) != EOF) {
-			FlightList[flightID].Plane[i].seatID = storeID;
-			FlightList[flightID].Plane[i].seatAssign = storeBool;
-
-			i++;
-		}
-		*/
 	} else {
+		printf("\nNo file in save slot!\n");
 		returnValue >>= 1; // bitwise value change from 1 to 0
 		return returnValue; // if fp == NULL -> return 0 for false / unsuccessful load
 	}

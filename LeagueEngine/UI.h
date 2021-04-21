@@ -33,13 +33,13 @@
 
 using namespace std;
 
-bool titlePage(Gladiator* player, vector<Gladiator*> &vec, League general, bool menuState);
+bool titlePage(Gladiator* player, vector<Gladiator*> &vec, League *general, bool menuState);
 void trainingFocus_UI(Gladiator* player);
 void displayTraining_UI(Gladiator* player);
-void DisplayStandings_UI(vector <Gladiator*> vec);
-//void titlePageInput(Gladiator* player, vector<Gladiator*>vec, League general, bool menuState);
-void newgame_UI(Gladiator* player, vector <Gladiator*> &vec, League general);
-bool gameMenu(vector <Gladiator*> &vec, Gladiator* player, League general, bool menuState);
+void DisplayStandings_UI(vector <Gladiator*> vec, League *general);
+void DisplayPlayer_UI(vector <Gladiator*> vec);
+void newgame_UI(Gladiator* player, vector <Gladiator*> &vec, League *general);
+bool gameMenu(vector <Gladiator*> &vec, Gladiator* player, League *general, bool menuState);
 
 
 #endif // !UI
