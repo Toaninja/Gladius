@@ -82,7 +82,7 @@ Gladiator *combatLoop(Gladiator* g1, Gladiator* g2) {
 Gladiator* selection(vector <Gladiator*>& vec) {
 	for (int i = 0; i < 10; i++)
 	{
-		if (vec[i]->getMatchMarker() < 2) {					// && getFocus() == 0
+		if (vec[i]->getMatchMarker() < 2 && vec[i]->getFocus() == 0) {					
 
 			vec[i]->setMatchMarker();
 			return vec[i];
@@ -125,7 +125,7 @@ void engine(vector <Gladiator*> &vec) {
 	memcpy(g2->HP, &g2Health, sizeof(float));
 
 
-	if (winner->getName() == g1->getName() && winner->getFocus() == g1->getFocus()) {
+	if (winner->getFocus() == g1->getFocus() && winner->getFocus() == g1->getFocus()) {
 
 		training(g1, 1);
 		training(g2, 0);
@@ -155,7 +155,7 @@ void engine(vector <Gladiator*> &vec) {
 		for (int i = 0; i < vec.size(); i++)
 		{
 
-			if (vec[i]->getName() != g1->getName() && vec[i]->getName() != g2->getName())
+			if (vec[i]->getFocus() != g1->getFocus() && vec[i]->getName() != g2->getName())
 			{
 				if (counter % 2 == 1)
 				{
@@ -179,7 +179,7 @@ void engine(vector <Gladiator*> &vec) {
 		for (int i = 0; i < vec.size(); i++)
 		{
 
-			if (vec[i]->getName() != g1->getName() && vec[i]->getName() != g2->getName())
+			if (vec[i]->getFocus() != g1->getFocus() && vec[i]->getName() != g2->getName())
 			{
 				if (counter % 2 == 1)
 				{
