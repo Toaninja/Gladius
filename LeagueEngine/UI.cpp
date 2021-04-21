@@ -157,9 +157,9 @@ case 2:
     {
         vec.push_back(generateGladiator(i, general));								//assign each gladiator to growing index until 
     }
-    manualLoad(player, vec, general);   //load
-
-
+    if (manualLoad(player, vec, general) == false) {   //load
+        titlePage(player, vec, general, true);
+    }
     break;
 
 case 3:

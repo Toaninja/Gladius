@@ -97,7 +97,8 @@ bool manualLoad(Gladiator* player, vector <Gladiator*> vec, League *general) {
 		manualLoad(player, vec, general);
 	}
 	else if (menuChoice == 5) {
-		titlePage(player, vec, general, true);
+		returnValue >>= 1;
+		return returnValue;
 	}
 	
 	if((fp = fopen(filename[menuChoice], "r+")) != NULL){ //open file that user selected
