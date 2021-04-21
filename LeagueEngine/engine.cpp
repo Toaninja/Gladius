@@ -113,16 +113,15 @@ void engine(vector <Gladiator*> &vec) {
 	Gladiator *winner;
 
 	
-	float g1Health = 0;
-	memcpy(&g1Health, g1->HP, sizeof(float));
+	float g1Health = *g1->HP;
+	float g2Health = *g2->HP;
 
-	float g2Health = 0;
-	memcpy(&g2Health, g2->HP, sizeof(float));
 
 	winner = combatLoop(g1, g2);
 
-	memcpy(g1->HP, &g1Health, sizeof(float));
-	memcpy(g2->HP, &g2Health, sizeof(float));
+	*g1->HP = g1Health;
+	*g2->HP = g2Health;
+
 
 
 	if (winner->getName() == g1->getName() && winner->getFocus() == g1->getFocus()) {
